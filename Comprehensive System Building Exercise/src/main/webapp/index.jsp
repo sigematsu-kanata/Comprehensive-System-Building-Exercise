@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("GakuseiList");
+response.sendRedirect("gakusei_list.jsp");
 %>
