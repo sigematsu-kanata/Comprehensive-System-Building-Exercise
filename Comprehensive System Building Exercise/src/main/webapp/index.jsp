@@ -6,6 +6,6 @@
 <title>学生管理画面</title>
 </head>
 <body>
- <a href="gakusei/servlet/GakuseiList">更新</a>
+ <a href="/src/gakusei/servlet/GakuseiListServlet.java">更新</a>
 </body>
 </html>
