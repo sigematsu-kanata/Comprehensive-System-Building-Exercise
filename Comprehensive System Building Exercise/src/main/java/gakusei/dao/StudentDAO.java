@@ -45,6 +45,7 @@ public class StudentDAO {
      * 学籍番号の昇順で返す。
      */
     public List<StudentBean> findByName(String keyword) throws SQLException {
+    	System.out.println("findByName1");
         String sql = BASE_SELECT;
         boolean hasKeyword = keyword != null && !keyword.isEmpty();
         if (hasKeyword) {
@@ -53,9 +54,10 @@ public class StudentDAO {
         sql += "ORDER BY s.student_id";
 
         List<StudentBean> list = new ArrayList<>();
-        try (Connection con = DBManager.getConnection();
+        System.out.println("findByName2");
+        try (Connection con = DBManager.getConnection();	
              PreparedStatement ps = con.prepareStatement(sql)) {
-
+        	System.out.println("try");
             if (hasKeyword) {
                 ps.setString(1, "%" + keyword + "%");
             }
@@ -65,6 +67,8 @@ public class StudentDAO {
                 }
             }
         }
+        System.out.println("re");
+        System.out.println(list);
         return list;
     }
 

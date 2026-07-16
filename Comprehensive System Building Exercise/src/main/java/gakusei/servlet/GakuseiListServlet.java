@@ -26,7 +26,7 @@ public class GakuseiListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    	System.out.println("GakuseiList");
         String keyword = request.getParameter("keyword");
 
         // アクション定義書「検索内容入力欄不正入力」: 全角以外が入力された場合はエラーメッセージ
@@ -36,10 +36,12 @@ public class GakuseiListServlet extends HttpServlet {
         }
 
         try {
+        	System.out.println("s.try");
             StudentDAO dao = new StudentDAO();
             List<StudentBean> list = dao.findByName(keyword);
             request.setAttribute("studentList", list);
             request.setAttribute("keyword", request.getParameter("keyword"));
+            System.out.println("f.try");
         } catch (SQLException e) {
             throw new ServletException("学生情報の取得に失敗しました。", e);
         }
