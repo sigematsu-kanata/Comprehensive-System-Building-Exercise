@@ -6,7 +6,6 @@
 <title>作業選択画面</title>
 </head>
 <body>
-
- <a href="/GakuseiList">更新</a>
+<a href="GakuseiList">更新</a>
 </body>
 </html>

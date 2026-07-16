@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Company;
+import kigyou.model.Company;
 
 //DBのcompanyテーブルに対して
 //検索・追加・更新・削除を行う
