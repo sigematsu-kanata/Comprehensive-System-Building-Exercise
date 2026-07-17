@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context reloadable="true">
-	<Resource
-		name="jdbc/korotok"
-		auth="Container"
-		type="javax.sql.DataSource"
-		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/korotok"
-		connectionProperties="autoReconnect=true;verifyServerCertificate=false;useSSL=false;requireSSL=false;useUnicode=true;characterEncoding=UTF-8;"
-		username="root"
-		password="kcsf"
-		validationQuery="select 1"/>
+<Context>
+
+    <Resource
+        name="jdbc/korotok"
+        auth="Container"
+        type="javax.sql.DataSource"
+
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/korotok?serverTimezone=Asia/Tokyo&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"
+
+        username="root"
+        password="kcsf"
+
+        maxTotal="20"
+        maxIdle="10"
+        maxWaitMillis="10000"
+
+        validationQuery="SELECT 1"
+        testOnBorrow="true"/>
 </Context>
