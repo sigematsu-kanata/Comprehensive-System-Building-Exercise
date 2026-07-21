@@ -16,6 +16,7 @@ import gakusei.dao.StudentDAO;
 
 /**
  * 画面ID: Gakusei_read　学生管理画面
+ * 
  * 一覧表示・氏名による検索を行う。
  */
 @WebServlet("/GakuseiList")
@@ -35,16 +36,18 @@ public class GakuseiListServlet extends HttpServlet {
             keyword = null; // 不正入力時は検索条件なしの一覧を表示
         }
 
-        try {
+       try {
         	System.out.println("s.try");
             StudentDAO dao = new StudentDAO();
             List<StudentBean> list = dao.findByName(keyword);
+            System.out.println("in");
             request.setAttribute("studentList", list);
             request.setAttribute("keyword", request.getParameter("keyword"));
             System.out.println("f.try");
         } catch (SQLException e) {
             throw new ServletException("学生情報の取得に失敗しました。", e);
         }
+        
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("gakusei_list.jsp");
         dispatcher.forward(request, response);

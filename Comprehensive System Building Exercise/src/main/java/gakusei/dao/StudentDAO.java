@@ -33,13 +33,15 @@ public class StudentDAO {
             "SELECT s.student_id, s.student_nunber, s.student_name, s.yomigana, s.jender, " +
             "       s.enrollment_status, s.Prefecture_choice, s.job_type1, s.job_type2, s.job_type3, " +
             "       s.placement_status, c.student_class " +
-            "FROM student s LEFT JOIN class_info c ON s.student_nunber = c.student_nunber ";
+            "FROM student_table s LEFT JOIN class_table c ON s.student_nunber = c.student_nunber ";
 
     /** 全件取得（クラス名も結合して取得） */
     public List<StudentBean> findAll() throws SQLException {
         return findByName(null);
     }
-
+    
+    
+    
     /**
      * 氏名の部分一致検索。keywordがnullまたは空文字の場合は全件取得。
      * 学籍番号の昇順で返す。
@@ -55,6 +57,7 @@ public class StudentDAO {
 
         List<StudentBean> list = new ArrayList<>();
         System.out.println("findByName2");
+        System.err.println(sql+"in");
         try (Connection con = DBManager.getConnection();	
              PreparedStatement ps = con.prepareStatement(sql)) {
         	System.out.println("try");
@@ -67,8 +70,6 @@ public class StudentDAO {
                 }
             }
         }
-        System.out.println("re");
-        System.out.println(list);
         return list;
     }
 
