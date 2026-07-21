@@ -7,6 +7,7 @@
 <title>作業選択画面</title>
 </head>
 <body>
-<a href="GakuseiList">更新</a>
+<a href="GakuseiList">学生</a>
+<a href="CompanyListServlet">企業</a>
 </body>
 </html>

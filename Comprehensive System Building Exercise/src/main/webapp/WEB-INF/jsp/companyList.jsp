@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List" %>
     <%@ page import="model.Company" %>
-<%@ <!-- Servletでセットした一覧を受け取る -->
-	List<Company>companyList = (List<Company>)request.getAttribute("companyList"); %>
+
+<!-- Servletでセットした一覧を受け取る -->
+<%List<Company>companyList = (List<Company>)request.getAttribute("companyList"); %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,7 @@
 <h1>企業管理画面</h1>
 
 <!-- 新規登録画面リンクボタン -->
-<form action="<%= request.getContexPath() %>/company/insertInput"method="get">
+<form action="<%= request.getContextPath() %>/CompanyInsertInputServlet"method="get">
 	<button type="submit">新規登録</button>
 </form>
 
@@ -33,31 +35,31 @@
         <th>削除</th>
      </tr>
      
-     </%
+     <%
      	if(companyList != null){
      	    for(Company c : companyList){
      %>
      <tr>
-         <td><%= c.getCompanyId() %></td> <!-- 企業番号 -->
-         <td><%= c.getCompanyName() %></td><!-- 企業名 -->
-         <td><%= c.getAliasName() %></td> <!-- 別名 -->
+         <td><%= c.getCompany_id() %></td> <!-- 企業番号 -->
+         <td><%= c.getCompany_name() %></td><!-- 企業名 -->
+         <td><%= c.getAlias_name() %></td> <!-- 別名 -->
          <td><%= c.getPostal_code() %></td> <!-- 郵便番号 -->
-         <td><%= c.getCompanyAddress() %></td> <!-- 住所 -->
+         <td><%= c.getCompany_address() %></td> <!-- 住所 -->
          <td><%= c.getPhone_number() %>  </td> <!-- TEL -->
          <td><%= c.getMail_address() %></td> <!-- メールアドレス -->
          <td><%= c.getPerson_name() %></td> <!-- 担当者名 -->
-         <td><%= c.getRecruitementrecord() %></td> <!-- 採用実績 -->
+         <td><%= c.getRecruitmentrecord() %></td> <!-- 採用実績 -->
      	<td>
      	
      		<!-- 企業管理更新画面へ -->
-     		<form action="<%= request.getContextPath() %>/company/updateInput"method="get" style="display:inline;">
-     			<input type="hidden" name="companyId" value="<%= c.getCompanyId() %>">
+     		<form action="<%= request.getContextPath() %>/CompanyUpdateInputServlet"method="get" style="display:inline;">
+     			<input type="hidden" name="Company_id" value="<%= c.getCompany_id() %>">
      			<button type="submit">更新</button>
      		</form>
      		
      		<!-- 企業管理削除確認画面 -->
-     		<form action="<%= request.getConetextPath() %>/company/deleteConfirm"method="get" style="display:inline;">
-     		    <input type="hidden" name="companyId" value="<%= c.getCompanyId() %>">
+     		<form action="<%= request.getContextPath() %>/CompanyDeleteConfirmServlet"method="get" style="display:inline;">
+     		    <input type="hidden" name="Company_id" value="<%= c.getCompany_id() %>">
      			<button type="submit">削除</button>
      		</form>
      	</td>

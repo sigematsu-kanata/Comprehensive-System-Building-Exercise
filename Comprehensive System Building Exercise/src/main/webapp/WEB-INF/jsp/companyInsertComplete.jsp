@@ -9,7 +9,7 @@
 <body>
 <h1>登録完了しました</h1>
 
-<form action="<%= request.getContextPath() %>/company/list" method="get">
+<form action="<%= request.getContextPath() %>/CompanyListServlet" method="get">
     <button type="submit">企業管理画面に戻る</button>
 </form>
 

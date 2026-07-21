@@ -9,7 +9,7 @@
 <body>
 <h1>削除完了しました</h1>
 
-<form action="<%= request.getContextPath() %>/company/list" method="get">
+<form action="<%= request.getContextPath() %>/CompanyListServlet" method="get">
     <button type="submit">戻る</button>
 </form>
 </body>
