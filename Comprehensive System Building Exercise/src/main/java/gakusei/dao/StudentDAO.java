@@ -56,20 +56,18 @@ public class StudentDAO {
         sql += "ORDER BY s.student_id";
 
         List<StudentBean> list = new ArrayList<>();
-        System.out.println("findByName2");
-        System.err.println(sql+"in");
         try (Connection con = DBManager.getConnection();	
              PreparedStatement ps = con.prepareStatement(sql)) {
-        	System.out.println("try");
             if (hasKeyword) {
                 ps.setString(1, "%" + keyword + "%");
-            }
+            }System.out.println(ps);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     list.add(mapRow(rs));
                 }
             }
         }
+        
         return list;
     }
 

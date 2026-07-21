@@ -50,11 +50,12 @@
         <%
             @SuppressWarnings("unchecked")
             List<StudentBean> list = (List<StudentBean>) request.getAttribute("studentList");
+        	List<StudentBean> student_class = (List<StudentBean>) request.getAttribute("class");
             if (list != null) {
-                for (StudentBean s : list) {
+                for (StudentBean s : list && StudentBean c : student_class) {
         %>
         <tr>
-            <td><%= s.getClassName() == null ? "" : s.getClassName() %></td>
+            <td><%= c.getClassName() //== null ? "" : s.getClassName()/ %></td>
             <td><%= s.getAttendanceNo() %></td>
             <td><%= s.getStudentId() %></td>
             <td><%= s.getName() %></td>

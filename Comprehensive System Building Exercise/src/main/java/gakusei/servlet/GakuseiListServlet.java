@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import gakusei.bean.StudentBean;
+import gakusei.dao.ClassDAO;
 import gakusei.dao.StudentDAO;
 
 /**
@@ -37,13 +38,22 @@ public class GakuseiListServlet extends HttpServlet {
         }
 
        try {
-        	System.out.println("s.try");
             StudentDAO dao = new StudentDAO();
             List<StudentBean> list = dao.findByName(keyword);
-            System.out.println("in");
+            List<StudentBean> student_class = null;
+            if (list != null) {
+                for (StudentBean s : list) {
+                	ClassDAO cdao = new ClassDAO();
+                	int num = Integer.parseInt(s.getAttendanceNo());
+                	num = num/100;
+                	System.out.println(num);
+                	student_class = cdao.findClass(num);
+                }
+            }
             request.setAttribute("studentList", list);
+            request.setAttribute("class", student_class);
             request.setAttribute("keyword", request.getParameter("keyword"));
-            System.out.println("f.try");
+            
         } catch (SQLException e) {
             throw new ServletException("学生情報の取得に失敗しました。", e);
         }
