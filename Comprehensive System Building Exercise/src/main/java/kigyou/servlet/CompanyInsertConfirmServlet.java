@@ -1,4 +1,4 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.CompanyDao;
-import model.Company;
+import kigyou.model.Company;
 
 /**
- * Servlet implementation class CompanyUpdateExecuteServlet
+ * Servlet implementation class CompanyInsertConfirmServlet
  */
-@WebServlet("/CompanyUpdateExecuteServlet")
-public class CompanyUpdateExecuteServlet extends HttpServlet {
+@WebServlet("/CompanyInsertConfirmServlet")
+public class CompanyInsertConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyUpdateExecuteServlet() {
+    public CompanyInsertConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +39,8 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		Company c = new Company();
-		c.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
 		c.setCompany_name(request.getParameter("company_name"));
 		c.setalias_name(request.getParameter("alias_name"));
 		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
@@ -51,12 +50,9 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
 		c.setPerson_name(request.getParameter("person_name"));
 		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
 		
-		CompanyDao dao = new CompanyDao();
-		dao.updata(c);
+		request.setAttribute("company", c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateComplete.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyInsertConfirm.jsp");
 		rd.forward(request, response);
-		
 	}
-
 }

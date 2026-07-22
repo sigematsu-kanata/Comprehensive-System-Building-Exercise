@@ -1,4 +1,4 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
 
@@ -13,16 +13,16 @@ import dao.CompanyDao;
 import model.Company;
 
 /**
- * Servlet implementation class CompanyInsertExecuteServlet
+ * Servlet implementation class CompanyUpdateInputServlet
  */
-@WebServlet("/CompanyInsertExecuteServlet")
-public class CompanyInsertExecuteServlet extends HttpServlet {
+@WebServlet("/CompanyUpdateInputServlet")//企業情報更新入力画面
+public class CompanyUpdateInputServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyInsertExecuteServlet() {
+    public CompanyUpdateInputServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,15 @@ public class CompanyInsertExecuteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int id = Integer.parseInt(request.getParameter("companyid"));
+		Company c = new CompanyDao().findById(id);
+		
+		request.setAttribute("company", c);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateInput.jsp");
+		rd.forward(request, response);
+		
+		
 	}
 
 	/**
@@ -40,23 +48,7 @@ public class CompanyInsertExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Company c = new Company();
-		c.setCompany_name(request.getParameter("company_name"));
-		c.setalias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
-		c.setCompany_address(request.getParameter("company_address"));
-		c.setPhone_number(request.getParameter("phone_number"));
-		c.setMail_address(request.getParameter("mail_address"));
-		c.setPerson_name(request.getParameter("person_name"));
-		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
-		
-		CompanyDao dao = new CompanyDao();
-		dao.insert(c);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyInsertComplete.jsp");
-		rd.forward(request, response);
-		
-		
+		doGet(request, response);
 	}
 
 }

@@ -1,4 +1,4 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
 
@@ -9,19 +9,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import model.Company;
+import dao.CompanyDao;
 
 /**
- * Servlet implementation class CompanyInsertConfirmServlet
+ * Servlet implementation class CompanyDeleteExecuteServlet
  */
-@WebServlet("/CompanyInsertConfirmServlet")
-public class CompanyInsertConfirmServlet extends HttpServlet {
+@WebServlet("/CompanyDeleteExecuteServlet")
+public class CompanyDeleteExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyInsertConfirmServlet() {
+    public CompanyDeleteExecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,20 +39,14 @@ public class CompanyInsertConfirmServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("companyid"));
 		
-		Company c = new Company();
-		c.setCompany_name(request.getParameter("company_name"));
-		c.setalias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
-		c.setCompany_address(request.getParameter("company_address"));
-		c.setPhone_number(request.getParameter("phone_number"));
-		c.setMail_address(request.getParameter("mail_address"));
-		c.setPerson_name(request.getParameter("person_name"));
-		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
+		CompanyDao dao = new CompanyDao();
+		dao.delete(id);
 		
-		request.setAttribute("company", c);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyInsertConfirm.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteComplete.jsp");
 		rd.forward(request, response);
+		
 	}
+
 }

@@ -1,4 +1,4 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
 

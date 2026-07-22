@@ -11,8 +11,30 @@
 <head>
 <meta charset="UTF-8">
 <title>企業管理画面</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="header">Job Hunting Management System - 企業管理</div>
+<div class="container">
+	<h2>企業管理画面</h2>
+	
+	<%
+        /*String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null) {*/
+    %>
+    <div class="error"><%= //errorMessage %></div>
+    <% //} %>
+    
+    <div class="action-links">
+        <a class="btn btn-gray" href="GakuseiList" title="このサブシステムの範囲外の画面です">作業選択</a>
+        <a class="btn" href="GakuseiCreateInput">新規登録</a>
+    </div>
+
+
+
+
+
+
 <form action="index.jsp" method="post">
 <table>
 	<tr><td><button type="submit">新規登録</button></td><td><h1>企業管理画面</h1></td></tr>

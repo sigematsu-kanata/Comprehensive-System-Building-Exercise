@@ -1,4 +1,4 @@
-package model;
+package kigyou.model;
 
 public class Company{
 	private String company_name; //企業名

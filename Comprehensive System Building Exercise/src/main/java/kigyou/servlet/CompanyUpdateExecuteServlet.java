@@ -1,4 +1,4 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
 
@@ -9,19 +9,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.CompanyDao;
+import kigyou.dao.CompanyDao;
+import kigyou.model.Company;
 
 /**
- * Servlet implementation class CompanyDeleteExecuteServlet
+ * Servlet implementation class CompanyUpdateExecuteServlet
  */
-@WebServlet("/CompanyDeleteExecuteServlet")
-public class CompanyDeleteExecuteServlet extends HttpServlet {
+@WebServlet("/CompanyUpdateExecuteServlet")
+public class CompanyUpdateExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyDeleteExecuteServlet() {
+    public CompanyUpdateExecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,12 +40,21 @@ public class CompanyDeleteExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("companyid"));
+		Company c = new Company();
+		c.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
+		c.setCompany_name(request.getParameter("company_name"));
+		c.setalias_name(request.getParameter("alias_name"));
+		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
+		c.setCompany_address(request.getParameter("company_address"));
+		c.setPhone_number(request.getParameter("phone_number"));
+		c.setMail_address(request.getParameter("mail_address"));
+		c.setPerson_name(request.getParameter("person_name"));
+		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
 		
 		CompanyDao dao = new CompanyDao();
-		dao.delete(id);
+		dao.updata(c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteComplete.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateComplete.jsp");
 		rd.forward(request, response);
 		
 	}

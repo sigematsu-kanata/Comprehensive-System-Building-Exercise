@@ -1,6 +1,7 @@
-package servlet;
+package kigyou.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,18 +13,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import dao.CompanyDao;
 import model.Company;
 
-
 /**
- * Servlet implementation class CompanyDeleteConfirmServlet
+ * Servlet implementation class CompanyListServlet
  */
-@WebServlet("/CompanyDeleteConfirmServlet")
-public class CompanyDeleteConfirmServlet extends HttpServlet {
+@WebServlet("/CompanyListServlet") //企業一覧画面
+public class CompanyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyDeleteConfirmServlet() {
+    public CompanyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +33,15 @@ public class CompanyDeleteConfirmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("companyid"));
+	//DAOを使って全件取得
+		CompanyDao dao = new CompanyDao();
+		List<Company> list = dao.findAll();
 		
-		Company c = new CompanyDao().findById(id);
+		//JSPに渡すため、リクエスト属性にセット
+		request.setAttribute("companyList", list);
 		
-		request.setAttribute("company", c);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteConfirm.jsp");
+		//一覧JSPへフォワード
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyList.jsp");
 		rd.forward(request, response);
 		
 	}
