@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="gakusei.bean.StudentBean" %>
+<%@	page import="gakusei.bean.ClassBeen" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -50,12 +51,13 @@
         <%
             @SuppressWarnings("unchecked")
             List<StudentBean> list = (List<StudentBean>) request.getAttribute("studentList");
-        	List<StudentBean> student_class = (List<StudentBean>) request.getAttribute("class");
+        	List<ClassBeen> student_class = (List<ClassBeen>) request.getAttribute("class");
             if (list != null) {
-                for (StudentBean s : list && StudentBean c : student_class) {
+                for (StudentBean s : list) {
+                	for (ClassBeen c : student_class) {
         %>
         <tr>
-            <td><%= c.getClassName() //== null ? "" : s.getClassName()/ %></td>
+            <td><%= c.getClassName() == null ? "" : c.getClassName() %></td>
             <td><%= s.getAttendanceNo() %></td>
             <td><%= s.getStudentId() %></td>
             <td><%= s.getName() %></td>
@@ -74,6 +76,7 @@
             </td>
         </tr>
         <%
+                	}
                 }
             }
         %>

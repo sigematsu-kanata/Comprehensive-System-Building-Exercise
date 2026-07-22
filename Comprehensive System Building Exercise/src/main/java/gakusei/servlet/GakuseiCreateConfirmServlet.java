@@ -63,9 +63,9 @@ public class GakuseiCreateConfirmServlet extends HttpServlet {
         if (ValidationUtil.isEmpty(bean.getName())) {
             return "氏名を入力してください。";
         }
-        if (ValidationUtil.isEmpty(bean.getKana()) || !ValidationUtil.isHiragana(bean.getKana())) {
+        /*if (ValidationUtil.isEmpty(bean.getKana()) || !ValidationUtil.isHiragana(bean.getKana())) {
             return "読み仮名は平仮名で入力してください。";
-        }
+        }*/
         if (ValidationUtil.isEmpty(bean.getAttendanceNo()) || !ValidationUtil.isNumeric(bean.getAttendanceNo())) {
             return "出席番号は半角数字で入力してください。";
         }
@@ -87,9 +87,9 @@ public class GakuseiCreateConfirmServlet extends HttpServlet {
         if (ValidationUtil.isEmpty(bean.getJob3())) {
             return "希望職種３を入力してください。";
         }
-        if (ValidationUtil.isEmpty(bean.getMediationDecline()) || "---".equals(bean.getMediationDecline())) {
+        /*if (ValidationUtil.isEmpty(bean.getMediationDecline()) || "---".equals(bean.getMediationDecline())) {
             return "あっせん辞退を選択してください。";
-        }
+        }*/
         return null;
     }
 }

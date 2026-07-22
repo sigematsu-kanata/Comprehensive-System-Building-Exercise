@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import gakusei.bean.StudentBean;
-
+import gakusei.bean.ClassBeen;
 /**
  * 学生情報テーブル(student)に対するCRUD処理を行うDAO。
  *
@@ -26,7 +25,7 @@ public class ClassDAO {
             "SELECT student_class " +
             "FROM  class_table ";
 	
-	public List<StudentBean> findClass(int AttendanceNo) throws SQLException {
+	public List<ClassBeen> findClass(int AttendanceNo) throws SQLException {
 			String sql = BASE_SELECT;
 			 boolean hasAttendanceNo = AttendanceNo != 0;
 			 
@@ -38,7 +37,7 @@ public class ClassDAO {
 	        }
 			
 			System.out.println("in end");
-			List<StudentBean> student_class = new ArrayList<>();
+			List<ClassBeen> student_class = new ArrayList<>();
 			try (Connection con = DBManager.getConnection();	
 	             PreparedStatement ps = con.prepareStatement(sql)) {
 	            if (hasAttendanceNo) {
@@ -60,9 +59,9 @@ public class ClassDAO {
 		return student_class;
 		
 	}
-	private StudentBean mapRow(ResultSet rs) throws SQLException {
-        StudentBean bean = new StudentBean();
-        bean.setClassName(rs.getString("student_class"));
+	private ClassBeen mapRow(ResultSet rs) throws SQLException {
+        ClassBeen bean = new ClassBeen();
+        bean.setclassName(rs.getString("student_class"));
         return bean;
     }
 

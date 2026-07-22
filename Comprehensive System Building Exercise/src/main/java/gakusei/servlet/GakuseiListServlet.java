@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import gakusei.bean.ClassBeen;
 import gakusei.bean.StudentBean;
 import gakusei.dao.ClassDAO;
 import gakusei.dao.StudentDAO;
@@ -28,7 +29,6 @@ public class GakuseiListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	System.out.println("GakuseiList");
         String keyword = request.getParameter("keyword");
 
         // アクション定義書「検索内容入力欄不正入力」: 全角以外が入力された場合はエラーメッセージ
@@ -40,13 +40,12 @@ public class GakuseiListServlet extends HttpServlet {
        try {
             StudentDAO dao = new StudentDAO();
             List<StudentBean> list = dao.findByName(keyword);
-            List<StudentBean> student_class = null;
+            List<ClassBeen> student_class = null;
             if (list != null) {
                 for (StudentBean s : list) {
                 	ClassDAO cdao = new ClassDAO();
                 	int num = Integer.parseInt(s.getAttendanceNo());
                 	num = num/100;
-                	System.out.println(num);
                 	student_class = cdao.findClass(num);
                 }
             }

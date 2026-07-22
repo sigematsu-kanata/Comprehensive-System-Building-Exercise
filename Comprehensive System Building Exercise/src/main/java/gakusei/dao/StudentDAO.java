@@ -47,7 +47,6 @@ public class StudentDAO {
      * 学籍番号の昇順で返す。
      */
     public List<StudentBean> findByName(String keyword) throws SQLException {
-    	System.out.println("findByName1");
         String sql = BASE_SELECT;
         boolean hasKeyword = keyword != null && !keyword.isEmpty();
         if (hasKeyword) {
@@ -60,7 +59,7 @@ public class StudentDAO {
              PreparedStatement ps = con.prepareStatement(sql)) {
             if (hasKeyword) {
                 ps.setString(1, "%" + keyword + "%");
-            }System.out.println(ps);
+            }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     list.add(mapRow(rs));
@@ -88,7 +87,7 @@ public class StudentDAO {
 
     /** 学籍番号がすでに登録済みかどうか（新規登録時の重複チェック用） */
     public boolean existsById(String studentId) throws SQLException {
-        String sql = "SELECT 1 FROM student WHERE student_id = ?";
+        String sql = "SELECT 1 FROM student_table WHERE student_id = ?";
         try (Connection con = DBManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, Integer.parseInt(studentId));
@@ -100,12 +99,15 @@ public class StudentDAO {
 
     /** 新規登録 */
     public void insert(StudentBean bean) throws SQLException {
-        String sql = "INSERT INTO student " +
+    	System.out.println("Stert");
+        String sql = "INSERT INTO student_table " +
                 "(student_id, student_nunber, student_name, yomigana, jender, enrollment_status, " +
                 " Prefecture_choice, job_type1, job_type2, job_type3, placement_status) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        System.out.println(sql);
         try (Connection con = DBManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
+        	System.out.println(ps);
             bindParams(ps, bean);
             ps.executeUpdate();
         }
@@ -113,7 +115,7 @@ public class StudentDAO {
 
     /** 更新（学籍番号をキーに更新） */
     public void update(StudentBean bean) throws SQLException {
-        String sql = "UPDATE student SET student_nunber=?, student_name=?, yomigana=?, jender=?, " +
+        String sql = "UPDATE student_table SET student_nunber=?, student_name=?, yomigana=?, jender=?, " +
                 "enrollment_status=?, Prefecture_choice=?, job_type1=?, job_type2=?, job_type3=?, " +
                 "placement_status=? WHERE student_id=?";
         try (Connection con = DBManager.getConnection();
@@ -135,7 +137,7 @@ public class StudentDAO {
 
     /** 削除 */
     public void delete(String studentId) throws SQLException {
-        String sql = "DELETE FROM student WHERE student_id = ?";
+        String sql = "DELETE FROM student_table WHERE student_id = ?";
         try (Connection con = DBManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, Integer.parseInt(studentId));
