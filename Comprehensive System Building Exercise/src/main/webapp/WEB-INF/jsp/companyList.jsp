@@ -26,15 +26,20 @@
     <% //} %>
     
     <div class="action-links">
-        <a class="btn btn-gray" href="GakuseiList" title="このサブシステムの範囲外の画面です">作業選択</a>
-        <a class="btn" href="GakuseiCreateInput">新規登録</a>
+        <a class="btn btn-gray" href="/index.jsp" title="このサブシステムの範囲外の画面です">作業選択</a>
+        <a class="btn" href="CompanyInsertInputServlet">新規登録</a>
     </div>
+    
+	<form class="search-box" action="CompanyListServlet" method="get">
+        検索（企業番号or企業名・全角）：
+        <input type="text" name="keyword" value="<%= request.getAttribute("keyword") == null ? "" : request.getAttribute("keyword") %>">
+        <button type="submit" class="btn">検索</button>
+    </form>
 
 
 
 
-
-
+<!--
 <form action="index.jsp" method="post">
 <table>
 	<tr><td><button type="submit">新規登録</button></td><td><h1>企業管理画面</h1></td></tr>
@@ -42,6 +47,7 @@
 </form>
 <!-- anpnmn -->
 <!-- 新規登録画面リンクボタン -->
+<!--
 <form action="<%= request.getContextPath() %>/CompanyInsertInputServlet"method="get">
 	<button type="submit">新規登録</button>
 </form>
@@ -96,6 +102,6 @@
      	}
      %>      
 </table>
-
+ -->
 </body>
 </html>

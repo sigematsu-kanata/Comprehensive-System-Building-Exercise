@@ -22,7 +22,7 @@
     <% } %>
 
     <div class="action-links">
-        <a class="btn btn-gray" href="GakuseiList" title="このサブシステムの範囲外の画面です">作業選択</a>
+        <a class="btn btn-gray" href="/index.jsp" title="このサブシステムの範囲外の画面です">作業選択</a>
         <a class="btn" href="GakuseiCreateInput">新規登録</a>
     </div>
 
