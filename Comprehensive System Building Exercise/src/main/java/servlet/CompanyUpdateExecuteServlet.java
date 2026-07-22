@@ -44,7 +44,7 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
 		c.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
 		c.setCompany_name(request.getParameter("company_name"));
 		c.setAlias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
+		c.setPostal_code(request.getParameter("postal_code"));
 		c.setCompany_address(request.getParameter("company_address"));
 		c.setPhone_number(request.getParameter("phone_number"));
 		c.setMail_address(request.getParameter("mail_address"));

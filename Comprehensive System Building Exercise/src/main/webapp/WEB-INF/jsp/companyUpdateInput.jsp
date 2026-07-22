@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>企業更新入力</h1>
-
+<!-- biknmn -->
 <form action="<%= request.getContextPath() %>/CompanyUpdateExecuteServlet" method="post">
     <input type="hidden" name="company_id" value="<%= c.getCompany_id() %>">
     <label for="companyName">企業名:</label>

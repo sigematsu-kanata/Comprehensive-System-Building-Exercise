@@ -13,8 +13,12 @@
 <title>企業管理画面</title>
 </head>
 <body>
-<h1>企業管理画面</h1>
-
+<form action="index.jsp" method="post">
+<table>
+	<tr><td><button type="submit">新規登録</button></td><td><h1>企業管理画面</h1></td></tr>
+</table>
+</form>
+<!-- anpnmn -->
 <!-- 新規登録画面リンクボタン -->
 <form action="<%= request.getContextPath() %>/CompanyInsertInputServlet"method="get">
 	<button type="submit">新規登録</button>
@@ -56,7 +60,8 @@
      			<input type="hidden" name="Company_id" value="<%= c.getCompany_id() %>">
      			<button type="submit">更新</button>
      		</form>
-     		
+     	</td>
+     	<td>
      		<!-- 企業管理削除確認画面 -->
      		<form action="<%= request.getContextPath() %>/CompanyDeleteConfirmServlet"method="get" style="display:inline;">
      		    <input type="hidden" name="Company_id" value="<%= c.getCompany_id() %>">

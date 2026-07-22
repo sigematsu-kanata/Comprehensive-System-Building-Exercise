@@ -43,7 +43,7 @@ public class CompanyInsertExecuteServlet extends HttpServlet {
 		Company c = new Company();
 		c.setCompany_name(request.getParameter("company_name"));
 		c.setAlias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
+		c.setPostal_code(request.getParameter("postal_code"));
 		c.setCompany_address(request.getParameter("company_address"));
 		c.setPhone_number(request.getParameter("phone_number"));
 		c.setMail_address(request.getParameter("mail_address"));
@@ -55,8 +55,8 @@ public class CompanyInsertExecuteServlet extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyInsertComplete.jsp");
 		rd.forward(request, response);
-		int result = dao.insert(c);
-		System.out.println("insert結果 = " + result);
+		//int result = dao.insert(c);
+		//System.out.println("insert結果 = " + result);
 		
 	}
 

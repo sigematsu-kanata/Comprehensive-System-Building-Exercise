@@ -39,16 +39,22 @@ public class CompanyInsertConfirmServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		Company c = new Company();
+		/*int postal_code = -1;
+		String Postal_code 
+		String p = Postal_code.replaceAll("\\D", "");
+		if(p.length() != 0) {
+			postal_code=Integer.parseInt(p);
+		}*/
 		c.setCompany_name(request.getParameter("company_name"));
 		c.setAlias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
+		c.setPostal_code(request.getParameter("postal_code"));
 		c.setCompany_address(request.getParameter("company_address"));
 		c.setPhone_number(request.getParameter("phone_number"));
 		c.setMail_address(request.getParameter("mail_address"));
 		c.setPerson_name(request.getParameter("person_name"));
 		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
+		
 		
 		request.setAttribute("company", c);
 		

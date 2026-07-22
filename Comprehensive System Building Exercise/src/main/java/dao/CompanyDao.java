@@ -29,7 +29,7 @@ public class CompanyDao{
 				c.setCompany_name(rs.getString("company_name"));
 				c.setAlias_name(rs.getString("alias_name"));
 				c.setCompany_id(rs.getInt("company_id"));
-				c.setPostal_code(rs.getInt("postal_code"));
+				c.setPostal_code(rs.getString("postal_code"));
 				c.setCompany_address(rs.getString("company_address"));	
 				c.setPhone_number(rs.getString("phone_number"));
 				c.setMail_address(rs.getString("mail_address"));
@@ -59,7 +59,7 @@ public class CompanyDao{
 				c.setCompany_name(rs.getString("company_name"));
 				c.setAlias_name(rs.getString("alias_name"));
 				c.setCompany_id(rs.getInt("company_id"));
-				c.setPostal_code(rs.getInt("postal_code"));
+				c.setPostal_code(rs.getString("postal_code"));
 				c.setCompany_address(rs.getString("company_address"));
 				c.setPhone_number(rs.getString("phone_number"));
 				c.setMail_address(rs.getString("mail_address"));
@@ -85,7 +85,7 @@ public class CompanyDao{
 			
 			ps.setString(1, c.getCompany_name());
 			ps.setString(2, c.getAlias_name());
-			ps.setInt(3, c.getPostal_code());
+			ps.setString(3, c.getPostal_code());
 			ps.setString(4, c.getCompany_address());
 			ps.setString(5, c.getPhone_number());
 			ps.setString(6, c.getMail_address());
@@ -119,7 +119,7 @@ public class CompanyDao{
 			
 			ps.setString(1, c.getCompany_name());
 			ps.setString(2, c.getAlias_name());
-			ps.setInt(3, c.getPostal_code());
+			ps.setString(3, c.getPostal_code());
 			ps.setString(4, c.getCompany_address());
 			ps.setString(5, c.getPhone_number());
 			ps.setString(6, c.getMail_address());

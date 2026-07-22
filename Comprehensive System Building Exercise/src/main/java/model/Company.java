@@ -4,7 +4,7 @@ public class Company{
 	private String company_name; //企業名
 	private String alias_name;  //企業別名
 	private int company_id;    //企業番号
-	private int postal_code;  //郵便番号
+	private String postal_code;  //郵便番号
 	private String company_address; //住所
 	private String phone_number; //電話番号
 	private String mail_address; //メールアドレス
@@ -31,10 +31,10 @@ public class Company{
 	public void setCompany_id(int company_id) {
 		this.company_id = company_id;
 	}
-	public int getPostal_code() {
+	public String getPostal_code() {
 		return postal_code;
 	}
-	public void setPostal_code(int postal_code) {
+	public void setPostal_code(String postal_code) {
 		this.postal_code = postal_code;
 	}
 	public String getCompany_address() {
