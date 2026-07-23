@@ -13,6 +13,40 @@ import kigyou.model.Company;
 
 public class CompanyDao{
 	
+	//企業名検索
+	public List<Company> findByName(String keyword){
+		List<Company> list = new ArrayList<>();
+		String sql = "SELECT * FROM company ORDER BY company_id";
+		
+		try(Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery()){
+			
+			//１行ずつCompanyに詰めてリストに追加
+			while(rs.next()) {
+				Company c = new Company();
+				c.setCompany_name(rs.getString("company_name"));
+				c.setalias_name(rs.getString("alias_name"));
+				c.setCompany_id(rs.getInt("company_id"));
+				c.setPostal_code(rs.getInt("postal_code"));
+				c.setCompany_address(rs.getString("company_address"));	
+				c.setPhone_number(rs.getString("phone_number"));
+				c.setMail_address(rs.getString("mail_address"));
+				c.setPerson_name(rs.getString("person_name"));
+				c.setRecruitmentrecord(rs.getString("recruitmentrecord"));
+				list.add(c);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
 	//全体収得（企業管理画面用）
 	public List<Company> findAll(){
 		List<Company> list = new ArrayList<>();

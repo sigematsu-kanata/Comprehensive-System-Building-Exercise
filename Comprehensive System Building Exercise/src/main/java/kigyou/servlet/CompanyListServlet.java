@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.CompanyDao;
-import model.Company;
+import kigyou.dao.CompanyDao;
+import kigyou.model.Company;
 
 /**
  * Servlet implementation class CompanyListServlet
