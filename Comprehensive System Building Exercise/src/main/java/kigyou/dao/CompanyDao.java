@@ -3,9 +3,12 @@ package kigyou.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import gakusei.dao.DBManager;
+import kigyou.bean.CompanyBean;
 import kigyou.model.Company;
 
 //DBのcompanyテーブルに対して
@@ -14,39 +17,57 @@ import kigyou.model.Company;
 public class CompanyDao{
 	
 	//企業名検索
-	public List<Company> findByName(String keyword){
-		List<Company> list = new ArrayList<>();
-		String sql = "SELECT * FROM company ORDER BY company_id";
+	public List<CompanyBean> findByName(String keyword) throws SQLException{
+		List<CompanyBean> list = new ArrayList<>();
+		String sql = "SELECT * FROM company ";
+		boolean hasKeyword = keyword != null && !keyword.isEmpty();
+		boolean muchKeyword = keyword.matches("-?\\d+");//数列か判断
 		
-		try(Connection con = getConnection();
-				PreparedStatement ps = con.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery()){
-			
-			//１行ずつCompanyに詰めてリストに追加
-			while(rs.next()) {
-				Company c = new Company();
-				c.setCompany_name(rs.getString("company_name"));
-				c.setalias_name(rs.getString("alias_name"));
-				c.setCompany_id(rs.getInt("company_id"));
-				c.setPostal_code(rs.getInt("postal_code"));
-				c.setCompany_address(rs.getString("company_address"));	
-				c.setPhone_number(rs.getString("phone_number"));
-				c.setMail_address(rs.getString("mail_address"));
-				c.setPerson_name(rs.getString("person_name"));
-				c.setRecruitmentrecord(rs.getString("recruitmentrecord"));
-				list.add(c);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		if (muchKeyword) {
+			sql += "WHERE company_id LIKE ? ";
+		}else if(hasKeyword) {
+            sql += "WHERE company_name LIKE ? ";
+        }
+        sql += "ORDER BY company_id";
+
+        
+        try (Connection con = DBManager.getConnection();	
+                PreparedStatement ps = con.prepareStatement(sql)) {
+               if (hasKeyword) {
+                   ps.setString(1, "%" + keyword + "%");
+               }
+               try (ResultSet rs = ps.executeQuery()) {
+                   while (rs.next()) {
+                       list.add(mapRow(rs));
+                   }
+               }
+           }
 		return list;
 	}
 	
 	
-	
-	
-	
-	
+	private CompanyBean mapRow(ResultSet rs) throws SQLException {
+		CompanyBean bean = new CompanyBean();
+		
+		bean.setCompany_name(rs.getString("company_name"));
+		bean.setAlias_name(rs.getString("alias_name"));
+		bean.setCompany_id(rs.getInt("company_id"));
+		bean.setPostal_code(rs.getString("postal_code"));
+		bean.setCompany_address(rs.getString("company_address"));
+		bean.setPhone_number(rs.getString("phone_number"));
+		bean.setMail_address(rs.getString("mail_address"));
+		bean.setPerson_name(rs.getString("person_name"));
+		bean.setRecruitment_record(rs.getString("recruitmentrecord"));
+		
+		
+        return bean;
+    }
+
+
+
+
+
+
 	//全体収得（企業管理画面用）
 	public List<Company> findAll(){
 		List<Company> list = new ArrayList<>();
