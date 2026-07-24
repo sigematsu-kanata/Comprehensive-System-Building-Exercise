@@ -25,20 +25,19 @@ public class CompanyDao{
 		if(hasKeyword) {
 			muchKeyword = keyword.matches("-?\\d+");//数列か判断
 		}
-		
-		
 		if (muchKeyword) {
 			sql += "WHERE company_id LIKE ? ";
 		}else if(hasKeyword) {
             sql += "WHERE company_name LIKE ? ";
         }
         sql += "ORDER BY company_id";
-
-        
         try (Connection con = DBManager.getConnection();	
                 PreparedStatement ps = con.prepareStatement(sql)) {
+        		
                if (hasKeyword) {
                    ps.setString(1, "%" + keyword + "%");
+               }else if(muchKeyword) {
+            	   ps.setString(1, "%" + keyword + "%");
                }
                try (ResultSet rs = ps.executeQuery()) {
                    while (rs.next()) {
@@ -102,8 +101,8 @@ public class CompanyDao{
 	}
 	
 	//主キーで１件取得（更新・削除確認用）
-	public Company findById(int id) {
-		Company c = null;
+	public CompanyBean findById(int id) {
+		CompanyBean c = new CompanyBean();
 		String sql = "SELECT * FROM company_table WHERE company_id=?";
 		
 		try(Connection con = getConnection();
@@ -113,16 +112,15 @@ public class CompanyDao{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				c = new Company();
 				c.setCompany_name(rs.getString("company_name"));
-				c.setalias_name(rs.getString("alias_name"));
+				c.setAlias_name(rs.getString("alias_name"));
 				c.setCompany_id(rs.getInt("company_id"));
-				c.setPostal_code(rs.getInt("postal_code"));
+				c.setPhone_number(rs.getString("postal_code"));
 				c.setCompany_address(rs.getString("company_address"));
 				c.setPhone_number(rs.getString("phone_number"));
 				c.setMail_address(rs.getString("mail_address"));
 				c.setPerson_name(rs.getString("person_name"));
-				c.setRecruitmentrecord(rs.getString("recruitmentrecord"));
+				c.setRecruitment_record(rs.getString("recruitmentrecord"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -45,7 +45,7 @@ public class CompanyListServlet extends HttpServlet {
             CompanyDao dao = new CompanyDao();
             List<CompanyBean> list = dao.findByName(keyword);
             
-            request.setAttribute("studentList", list);
+            request.setAttribute("companyList", list);
             request.setAttribute("keyword", request.getParameter("keyword"));
             
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class CompanyListServlet extends HttpServlet {
         }
         
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("companyList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/companyList.jsp");
         dispatcher.forward(request, response);
 		
 		
