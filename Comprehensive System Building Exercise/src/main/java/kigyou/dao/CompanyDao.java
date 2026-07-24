@@ -19,9 +19,13 @@ public class CompanyDao{
 	//企業名検索
 	public List<CompanyBean> findByName(String keyword) throws SQLException{
 		List<CompanyBean> list = new ArrayList<>();
-		String sql = "SELECT * FROM company ";
+		String sql = "SELECT * FROM company_table ";
 		boolean hasKeyword = keyword != null && !keyword.isEmpty();
-		boolean muchKeyword = keyword.matches("-?\\d+");//数列か判断
+		boolean muchKeyword = false;
+		if(hasKeyword) {
+			muchKeyword = keyword.matches("-?\\d+");//数列か判断
+		}
+		
 		
 		if (muchKeyword) {
 			sql += "WHERE company_id LIKE ? ";
@@ -57,7 +61,7 @@ public class CompanyDao{
 		bean.setPhone_number(rs.getString("phone_number"));
 		bean.setMail_address(rs.getString("mail_address"));
 		bean.setPerson_name(rs.getString("person_name"));
-		bean.setRecruitment_record(rs.getString("recruitmentrecord"));
+		bean.setRecruitment_record(rs.getString("recruitment_record"));
 		
 		
         return bean;
@@ -100,7 +104,7 @@ public class CompanyDao{
 	//主キーで１件取得（更新・削除確認用）
 	public Company findById(int id) {
 		Company c = null;
-		String sql = "SELECT * FROM company WHERE company_id=?";
+		String sql = "SELECT * FROM company_table WHERE company_id=?";
 		
 		try(Connection con = getConnection();
 				PreparedStatement ps = con.prepareStatement(sql)){
@@ -129,7 +133,7 @@ public class CompanyDao{
 	//新規登録
 	public int insert(Company c) {
 		//company_idはDB側で自動割り当て想定
-		String sql = "INSERT INTO company("
+		String sql = "INSERT INTO company_table("
 				   + "company_name, alias_name, company_id, postal_code, company_address,"
 				   + "phone_number, mail_address, person_name, recruitmentrecord"
 				   + ") VALUES(?,?,?,?,?,?,?,?)";
@@ -157,7 +161,7 @@ public class CompanyDao{
 	
 	//更新
 	public int updata(Company c) {
-		String sql = "UPDATE company SET"
+		String sql = "UPDATE company_table SET"
 				   + "company_name=?, alias_name=?, postal_code=?, company_address=?"
 				   + "phone_number=?, mail_address=?, person_name=?, recruitmentrecord=?"
 				   + "WHERE company_id=?";
@@ -184,7 +188,7 @@ public class CompanyDao{
 	
 	//削除
 	public int delete(int id) {
-		String sql = "DELETE FROM company WHERE company_id=?";
+		String sql = "DELETE FROM company_table WHERE company_id=?";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
