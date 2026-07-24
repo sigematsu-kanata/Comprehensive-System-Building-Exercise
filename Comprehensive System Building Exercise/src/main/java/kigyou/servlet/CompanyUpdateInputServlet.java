@@ -35,6 +35,7 @@ public class CompanyUpdateInputServlet extends HttpServlet {
             int companyId =Integer.parseInt(request.getParameter("companyId"));
             CompanyDao dao = new CompanyDao();
 			bean = dao.findById(companyId);
+			
             if (bean == null) {
                 request.setAttribute("errorMessage", "指定された企業情報が見つかりません。");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("CompanyListServlet");
@@ -54,6 +55,9 @@ public class CompanyUpdateInputServlet extends HttpServlet {
 		
 		request.setAttribute("company", c);
 		*/
+		String Company_name = bean.getPerson_name() == null ? "null" : bean.getPerson_name();
+		System.out.println(Company_name);
+		request.setAttribute("bean", bean);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateInput.jsp");
 		rd.forward(request, response);
 		

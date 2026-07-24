@@ -102,30 +102,53 @@ public class CompanyDao{
 	
 	//主キーで１件取得（更新・削除確認用）
 	public CompanyBean findById(int id) {
-		CompanyBean c = new CompanyBean();
+		
 		String sql = "SELECT * FROM company_table WHERE company_id=?";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapRow(rs);
+                }
+            }
+        }
+        return null;
+		
+		/*
+		CompanyBean bean = new CompanyBean();
+		String sql = "SELECT * FROM company_table WHERE company_id=?";
+		
+		System.out.println("start");
 		
 		try(Connection con = getConnection();
 				PreparedStatement ps = con.prepareStatement(sql)){
 			
+			System.out.println("try");
 			ps.setInt(1, id);
+			
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setCompany_name(rs.getString("company_name"));
-				c.setAlias_name(rs.getString("alias_name"));
-				c.setCompany_id(rs.getInt("company_id"));
-				c.setPhone_number(rs.getString("postal_code"));
-				c.setCompany_address(rs.getString("company_address"));
-				c.setPhone_number(rs.getString("phone_number"));
-				c.setMail_address(rs.getString("mail_address"));
-				c.setPerson_name(rs.getString("person_name"));
-				c.setRecruitment_record(rs.getString("recruitmentrecord"));
+				
+				System.out.println("try if");
+				System.out.println(rs.getString("company_name"));
+				
+				bean.setCompany_name(rs.getString("company_name"));
+				bean.setAlias_name(rs.getString("alias_name"));
+				bean.setCompany_id(rs.getInt("company_id"));
+				bean.setPhone_number(rs.getString("postal_code"));
+				bean.setCompany_address(rs.getString("company_address"));
+				bean.setPhone_number(rs.getString("phone_number"));
+				bean.setMail_address(rs.getString("mail_address"));
+				bean.setPerson_name(rs.getString("person_name"));
+				bean.setRecruitment_record(rs.getString("recruitmentrecord"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return c;
+		return bean;
+		*/
 	}
 	
 	//新規登録
