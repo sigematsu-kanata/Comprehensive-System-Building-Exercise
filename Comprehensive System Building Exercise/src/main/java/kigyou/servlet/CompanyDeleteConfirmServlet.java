@@ -9,14 +9,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import kigyou.dao.CompanyDao;
-import kigyou.model.Company;
+import kigyou.bean.CompanyBean;
 
 
 /**
  * Servlet implementation class CompanyDeleteConfirmServlet
  */
-@WebServlet("/CompanyDeleteConfirmServlet")
+@WebServlet("/CompanyDeleteConfirmServlet")//企業情報削除確認画面
 public class CompanyDeleteConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,9 +34,9 @@ public class CompanyDeleteConfirmServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("companyid"));
 		
-		Company c = new CompanyDao().findById(id);
+		CompanyBean bean = new CompanyBean().findById(id);
 		
-		request.setAttribute("company", c);
+		request.setAttribute("company", bean);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteConfirm.jsp");
 		rd.forward(request, response);

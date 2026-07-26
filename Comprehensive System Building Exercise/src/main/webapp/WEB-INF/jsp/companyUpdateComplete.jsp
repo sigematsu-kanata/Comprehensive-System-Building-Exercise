@@ -37,8 +37,9 @@
 
     <p>以上の内容で更新いたします。</p>
 
-
-<form action="<%= request.getContextPath() %>/CompanyListServlet" method="get">
-    <button type="submit">企業管理画面に戻る</button>
+	<form action="CompanyUpdateExecuteServlet" method="post">
+        <button type="submit" name="action" value="execute" class="btn">実行</button>
+        <button type="submit" name="action" value="back" class="btn btn-gray">戻る</button>
+    </form>
 </body>
 </html>

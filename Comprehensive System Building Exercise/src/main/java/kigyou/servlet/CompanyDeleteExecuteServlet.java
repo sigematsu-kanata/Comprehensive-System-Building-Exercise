@@ -14,7 +14,7 @@ import kigyou.dao.CompanyDao;
 /**
  * Servlet implementation class CompanyDeleteExecuteServlet
  */
-@WebServlet("/CompanyDeleteExecuteServlet")
+@WebServlet("/CompanyDeleteExecuteServlet")//企業情報削除確認画面
 public class CompanyDeleteExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

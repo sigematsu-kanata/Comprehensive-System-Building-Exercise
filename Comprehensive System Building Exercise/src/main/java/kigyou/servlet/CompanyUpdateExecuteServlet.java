@@ -8,14 +8,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
+import kigyou.bean.CompanyBean;
 import kigyou.dao.CompanyDao;
-import kigyou.model.Company;
 
 /**
  * Servlet implementation class CompanyUpdateExecuteServlet
  */
-@WebServlet("/CompanyUpdateExecuteServlet")
+@WebServlet("/CompanyUpdateExecuteServlet")//企業情報更新確認画面
+
+
 public class CompanyUpdateExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,19 +43,21 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Company c = new Company();
-		c.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
-		c.setCompany_name(request.getParameter("company_name"));
-		c.setalias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
-		c.setCompany_address(request.getParameter("company_address"));
-		c.setPhone_number(request.getParameter("phone_number"));
-		c.setMail_address(request.getParameter("mail_address"));
-		c.setPerson_name(request.getParameter("person_name"));
-		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
+		HttpSession session = request.getSession();
+		CompanyBean bean = (CompanyBean) request.getAttribute("bean");
+	    if (bean == null) bean = (CompanyBean) session.getAttribute("updateBean");
+	    bean.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
+		bean.setCompany_name(request.getParameter("company_name"));
+		bean.setAlias_name(request.getParameter("alias_name"));
+		bean.setPostal_code(request.getParameter("postal_code"));
+		bean.setCompany_address(request.getParameter("company_address"));
+		bean.setPhone_number(request.getParameter("phone_number"));
+		bean.setMail_address(request.getParameter("mail_address"));
+		bean.setPerson_name(request.getParameter("person_name"));
+		bean.setRecruitment_record(request.getParameter("recruitmentrecord"));
 		
 		CompanyDao dao = new CompanyDao();
-		dao.updata(c);
+		dao.updata(bean);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateComplete.jsp");
 		rd.forward(request, response);
