@@ -32,8 +32,8 @@
     <% } %>
 	<form action="CompanyUpdateConfirmServlet" method="post">
 	    <table class="form-table">
-	    	<tr><th>企業番号</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
-	    	<tr><th>企業名</th> <td><input type="text" name="companyName"  value="<%= Company_name %>" required></td></tr>
+	    	<tr><th>企業番号</th> <td><input type="text" name="company_id" value="<%= Company_id %>" required></td></tr>
+	    	<tr><th>企業名</th> <td><input type="text" name="company_name"  value="<%= Company_name %>" required></td></tr>
 	        <tr><th>別名</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
 	        <tr><th>郵便番号</th> <td><input type="text" id="Postal_code" name="Postal_code" value="<%= Postal_code %>" required></td></tr>
 	        <tr><th>住所</th> <td><input type="text" id="companyAddress" name="company_address" value="<%= Company_address %>" required></td></tr>
