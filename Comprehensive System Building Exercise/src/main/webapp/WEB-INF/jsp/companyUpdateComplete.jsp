@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="header">Job Hunting Management System - 学生管理</div>
+<div class="header">Job Hunting Management System - 企業管理</div>
 <div class="container">
     <h2>企業管理更新確認</h2>
 

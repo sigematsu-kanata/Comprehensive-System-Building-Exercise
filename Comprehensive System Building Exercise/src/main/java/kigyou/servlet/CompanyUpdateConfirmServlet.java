@@ -23,15 +23,15 @@ public class CompanyUpdateConfirmServlet extends HttpServlet {
             throws ServletException, IOException {
 
         CompanyBean bean = new CompanyBean();
-        bean.setCompany_name(request.getParameter(""));
-        bean.setAlias_name(request.getParameter(""));
-        //bean.setCompany_id(Integer.parseInt(request.getParameter("")));
-        bean.setPostal_code(request.getParameter(""));
-        bean.setCompany_address(request.getParameter(""));
-        bean.setPhone_number(request.getParameter(""));
-        bean.setMail_address(request.getParameter(""));
-        bean.setPerson_name(request.getParameter(""));
-        bean.setRecruitment_record(request.getParameter(""));
+        bean.setCompany_name(request.getParameter("company_name"));
+        bean.setAlias_name(request.getParameter("alias_name"));
+        bean.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
+        bean.setPostal_code(request.getParameter("postal_code"));
+        bean.setCompany_address(request.getParameter("company_address"));
+        bean.setPhone_number(request.getParameter("phone_number"));
+        bean.setMail_address(request.getParameter("mail_address"));
+        bean.setPerson_name(request.getParameter("person_name"));
+        bean.setRecruitment_record(request.getParameter("recruitment_record"));
 
         String error = validate(bean);
         if (error != null) {

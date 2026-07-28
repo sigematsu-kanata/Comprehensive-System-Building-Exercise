@@ -58,7 +58,7 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
         }
 
         session.removeAttribute("updateBean");
-        response.sendRedirect("GakuseiList");
+        response.sendRedirect("CompanyListServlet");
 	}
 
 }
