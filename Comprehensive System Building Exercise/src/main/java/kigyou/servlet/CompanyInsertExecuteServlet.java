@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import kigyou.bean.CompanyBean;
 import kigyou.dao.CompanyDao;
-import kigyou.model.Company;
 
 /**
  * Servlet implementation class CompanyInsertExecuteServlet
@@ -40,15 +40,15 @@ public class CompanyInsertExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Company c = new Company();
+		CompanyBean c = new CompanyBean();
 		c.setCompany_name(request.getParameter("company_name"));
-		c.setalias_name(request.getParameter("alias_name"));
-		c.setPostal_code(Integer.parseInt(request.getParameter("postal_code")));
+		c.setAlias_name(request.getParameter("alias_name"));
+		c.setPostal_code(request.getParameter("postal_code"));
 		c.setCompany_address(request.getParameter("company_address"));
 		c.setPhone_number(request.getParameter("phone_number"));
 		c.setMail_address(request.getParameter("mail_address"));
 		c.setPerson_name(request.getParameter("person_name"));
-		c.setRecruitmentrecord(request.getParameter("recruitmentrecord"));
+		c.setRecruitment_record(request.getParameter("recruitmentrecord"));
 		
 		CompanyDao dao = new CompanyDao();
 		dao.insert(c);

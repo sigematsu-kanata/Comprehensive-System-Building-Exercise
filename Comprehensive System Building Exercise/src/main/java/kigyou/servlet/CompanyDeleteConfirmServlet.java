@@ -1,6 +1,7 @@
 package kigyou.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import kigyou.bean.CompanyBean;
+import kigyou.dao.CompanyDao;
 
 
 /**
@@ -34,9 +36,16 @@ public class CompanyDeleteConfirmServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("companyid"));
 		
-		CompanyBean bean = new CompanyBean().findById(id);
+		CompanyDao dao = new CompanyDao();
+		CompanyBean bean =new CompanyBean();
+			try {
+				bean = dao.findById(id);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 		
-		request.setAttribute("company", bean);
+		request.setAttribute("bean", bean);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteConfirm.jsp");
 		rd.forward(request, response);

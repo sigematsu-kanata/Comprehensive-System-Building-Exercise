@@ -1,6 +1,7 @@
 package kigyou.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -34,7 +35,12 @@ public class CompanyUpdateInputServlet extends HttpServlet {
 		if (bean == null) {
             int companyId =Integer.parseInt(request.getParameter("companyId"));
             CompanyDao dao = new CompanyDao();
-			bean = dao.findById(companyId);
+			try {
+				bean = dao.findById(companyId);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 			
             if (bean == null) {
                 request.setAttribute("errorMessage", "指定された企業情報が見つかりません。");
