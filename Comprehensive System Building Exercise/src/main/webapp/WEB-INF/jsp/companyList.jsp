@@ -36,7 +36,7 @@
         <button type="submit" class="btn">検索</button>
     </form>
 	<table>
-        <tr>
+        <tr>S
             <th>企業番号</th>
         	<th>企業名</th>
         	<th>別名</th>

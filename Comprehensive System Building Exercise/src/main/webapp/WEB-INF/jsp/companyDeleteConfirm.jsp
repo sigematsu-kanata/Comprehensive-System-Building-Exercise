@@ -45,7 +45,11 @@
         <tr><th>採用実績</th><td><%= bean.getRecruitment_record() %></td></tr>
     </table>
 </div>
-<form action="<%= request.getContextPath() %>/CompanyListServlet" method="get">
-    <button type="submit">戻る</button>
+
+<form action="GakuseiDeleteExecute" method="post">
+        <input type="hidden" name="companyid" value="<%= bean.getCompany_id() %>">
+        <button type="submit" name="action" value="execute" class="btn btn-danger">実行</button>
+        <button type="submit" name="action" value="back" class="btn btn-gray">戻る</button>
+</form>
 </body>
 </html>

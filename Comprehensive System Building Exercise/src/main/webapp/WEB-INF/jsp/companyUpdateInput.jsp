@@ -14,7 +14,7 @@
     String Recruitment_record = bean.getRecruitment_record() == null ? "" : bean.getRecruitment_record();
 %>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>企業管理更新画面</title>
@@ -30,27 +30,27 @@
     %>
     <div class="error"><%= errorMessage %></div>
     <% } %>
-	
-	
-	<form action="<%= request.getContextPath() %>/CompanyUpdateExecuteServlet" method="post">
-        <table class="form-table">
-        	<tr><th>企業名</th> <td><input type="text" name="companyName"  value="<%= Company_name %>" required></td></tr>
-            <tr><th>別名</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
-            
-            <tr><th>郵便番号</th> <td><input type="text" id="Postal_code" name="Postal_code" value="<%= Postal_code %>" required></td></tr>
-            <tr><th>住所</th> <td><input type="text" id="companyAddress" name="company_address" value="<%= Company_address %>" required></td></tr>
-            <tr><th>TEL</th> <td><input type="text" id="phoneNumber" name="phone_number" value="<%= Phone_number %>" required></td></tr>
-            <tr><th>メールアドレス</th> <td><input type="email" id="mailAddress" name="mail_address" value="<%= Mail_address %>" required></td></tr>
-            <tr><th>担当者名</th> <td><input type="text" id="personName" name="person_name" value="<%= Person_name %>" required></td></tr>
-            <tr><th>採用実績</th>
-                <td>
-                    <select name="recruitmentrecord" required>
-                        <option value="〇" <%= "〇".equals(Recruitment_record) || Recruitment_record.isEmpty() ? "selected" : "" %>>〇</option>
-                        <option value="×" <%= "×".equals(Recruitment_record) ? "selected" : "" %>>×</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
+	<form action="CompanyUpdateConfirmServlet" method="post">
+	    <table class="form-table">
+	    	<tr><th>企業番号</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
+	    	<tr><th>企業名</th> <td><input type="text" name="companyName"  value="<%= Company_name %>" required></td></tr>
+	        <tr><th>別名</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
+	        <tr><th>郵便番号</th> <td><input type="text" id="Postal_code" name="Postal_code" value="<%= Postal_code %>" required></td></tr>
+	        <tr><th>住所</th> <td><input type="text" id="companyAddress" name="company_address" value="<%= Company_address %>" required></td></tr>
+	        <tr><th>TEL</th> <td><input type="text" id="phoneNumber" name="phone_number" value="<%= Phone_number %>" required></td></tr>
+	        <tr><th>メールアドレス</th> <td><input type="email" id="mailAddress" name="mail_address" value="<%= Mail_address %>" required></td></tr>
+	        <tr><th>担当者名</th> <td><input type="text" id="personName" name="person_name" value="<%= Person_name %>" required></td></tr>
+	        <tr><th>採用実績</th>
+	            <td>
+	                <select name="recruitmentrecord" required>
+	                    <option value="〇" <%= "〇".equals(Recruitment_record) || Recruitment_record.isEmpty() ? "selected" : "" %>>〇</option>
+	                    <option value="×" <%= "×".equals(Recruitment_record) ? "selected" : "" %>>×</option>
+	                </select>
+	            </td>
+	        </tr>
+	    </table>
+        <button type="submit" class="btn">登録</button>
+        <a class="btn btn-gray" href="CompanyListServlet">戻る</a>
     </form>
 </div>
 </body>

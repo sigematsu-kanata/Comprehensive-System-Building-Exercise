@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>企業管理更新確認画面</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="header">Job Hunting Management System - 学生管理</div>
@@ -24,7 +25,6 @@
     <% } %>
 
     <table class="form-table">
-        <tr><th>企業番号</th><td><%= bean.getCompany_id() %></td></tr>
         <tr><th>企業名</th><td><%= bean.getCompany_name() %></td></tr>
         <tr><th>別名</th><td><%= bean.getAlias_name() %></td></tr>
         <tr><th>郵便番号</th><td><%= bean.getPostal_code() %></td></tr>

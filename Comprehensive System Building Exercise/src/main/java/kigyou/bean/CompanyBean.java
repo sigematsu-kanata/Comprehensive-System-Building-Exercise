@@ -35,7 +35,7 @@ public class CompanyBean implements Serializable  {
 	public void setPhone_number(String phone_number) {this.phone_number = phone_number;}
 	
 	public String getMail_address() {return mail_address;}
-	public void setMail_address(String mail_address) {this.alias_name = mail_address;}
+	public void setMail_address(String mail_address) {this.mail_address = mail_address;}
 	
 	public String getPerson_name() {return person_name;}
 	public void setPerson_name(String person_name) {this.person_name = person_name;}

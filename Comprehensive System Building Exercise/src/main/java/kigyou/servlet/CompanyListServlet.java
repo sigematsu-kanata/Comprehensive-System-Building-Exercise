@@ -56,25 +56,6 @@ public class CompanyListServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/companyList.jsp");
         dispatcher.forward(request, response);
 		
-		
-		
-		
-		
-		
-		
-		
-	//DAOを使って全件取得
-		/*
-		CompanyDao dao = new CompanyDao();
-		List<Company> list = dao.findAll();
-		
-		//JSPに渡すため、リクエスト属性にセット
-		request.setAttribute("companyList", list);
-		
-		//一覧JSPへフォワード
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyList.jsp");
-		rd.forward(request, response);
-		*/
 	}
 
 	/**

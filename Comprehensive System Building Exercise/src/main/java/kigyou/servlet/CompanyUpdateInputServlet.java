@@ -29,53 +29,31 @@ public class CompanyUpdateInputServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		// 確認画面から「戻る」で来た場合は、修正途中の内容を再表示する
-		CompanyBean bean = (CompanyBean) session.getAttribute("updateBean");
-		
-		if (bean == null) {
-            int companyId =Integer.parseInt(request.getParameter("companyId"));
-            CompanyDao dao = new CompanyDao();
-			try {
-				bean = dao.findById(companyId);
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			
+		 // 確認画面から「戻る」で来た場合は、修正途中の内容を再表示する
+		CompanyBean bean = (CompanyBean) session.getAttribute("bean");
+
+        if (bean == null) {
+            String companyId = request.getParameter("companyId");
+            System.out.println(companyId);
+            try {
+            	CompanyDao dao = new CompanyDao();
+                bean = dao.findById(Integer.parseInt(companyId));
+            } catch (SQLException e) {
+                throw new ServletException("企業情報の取得に失敗しました。", e);
+            }
             if (bean == null) {
                 request.setAttribute("errorMessage", "指定された企業情報が見つかりません。");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("CompanyListServlet");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateComplete.jsp");
                 dispatcher.forward(request, response);
                 return;
             }
         }
-		/*  try {
-            	CompanyDao dao = new CompanyDao();
-                bean = dao.findById(companyId);
-            } catch (SQLException e) {
-                throw new ServletException("企業情報の取得に失敗しました。", e);
-            }
-		 * 
-		int id = Integer.parseInt(request.getParameter("keyword"));
-		CompanyDao c = new CompanyDao().findById(id);
-		
-		request.setAttribute("company", c);
-		*/
-		String Company_name = bean.getPerson_name() == null ? "null" : bean.getPerson_name();
-		System.out.println(Company_name);
-		request.setAttribute("bean", bean);
+        
+        request.setAttribute("bean", bean);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateInput.jsp");
 		rd.forward(request, response);
 		
-		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }

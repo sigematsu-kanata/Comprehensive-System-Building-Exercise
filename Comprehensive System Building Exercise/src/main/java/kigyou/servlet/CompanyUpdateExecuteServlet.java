@@ -1,6 +1,7 @@
 package kigyou.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,47 +22,43 @@ import kigyou.dao.CompanyDao;
 
 public class CompanyUpdateExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CompanyUpdateExecuteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+   
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
-		CompanyBean bean = (CompanyBean) request.getAttribute("bean");
-	    if (bean == null) bean = (CompanyBean) session.getAttribute("updateBean");
-	    bean.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
-		bean.setCompany_name(request.getParameter("company_name"));
-		bean.setAlias_name(request.getParameter("alias_name"));
-		bean.setPostal_code(request.getParameter("postal_code"));
-		bean.setCompany_address(request.getParameter("company_address"));
-		bean.setPhone_number(request.getParameter("phone_number"));
-		bean.setMail_address(request.getParameter("mail_address"));
-		bean.setPerson_name(request.getParameter("person_name"));
-		bean.setRecruitment_record(request.getParameter("recruitmentrecord"));
+		CompanyBean bean = (CompanyBean) session.getAttribute("updateBean");
 		
-		CompanyDao dao = new CompanyDao();
-		dao.updata(bean);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyUpdateComplete.jsp");
-		rd.forward(request, response);
-		
+        if (bean == null) {
+            response.sendRedirect("/WEB-INF/jsp/companyUpdateComplete.jsp");
+            return;
+        }
+
+        String action = request.getParameter("action"); // "execute" or "back"
+
+        if ("back".equals(action)) {
+            response.sendRedirect("GakuseiUpdateInput");
+            return;
+        }
+
+        try {
+        	CompanyDao dao = new CompanyDao();
+        	CompanyBean original = dao.findById(bean.getCompany_id());
+            if (original == null) {
+                request.setAttribute("errorMessage", "更新対象の企業情報が見つかりません。");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("GakuseiList");
+                dispatcher.forward(request, response);
+                return;
+            }
+            int num = dao.updata(bean);
+            System.out.println(num);
+        } catch (SQLException e) {
+            throw new ServletException("企業情報の更新に失敗しました。", e);
+        }
+
+        session.removeAttribute("updateBean");
+        response.sendRedirect("GakuseiList");
 	}
 
 }
