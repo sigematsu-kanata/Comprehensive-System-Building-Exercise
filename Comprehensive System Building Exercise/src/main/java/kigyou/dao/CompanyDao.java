@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import gakusei.dao.DBManager;
+import kigyou.dao.DBManager;
 import kigyou.bean.CompanyBean;
 
 //DBのcompanyテーブルに対して
