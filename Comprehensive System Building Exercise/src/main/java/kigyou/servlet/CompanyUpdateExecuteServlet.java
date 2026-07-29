@@ -52,8 +52,7 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
                 dispatcher.forward(request, response);
                 return;
             }
-            int num = dao.updata(bean);
-            System.out.println(num);
+            dao.updata(bean);
         } catch (SQLException e) {
             throw new ServletException("企業情報の更新に失敗しました。", e);
         }

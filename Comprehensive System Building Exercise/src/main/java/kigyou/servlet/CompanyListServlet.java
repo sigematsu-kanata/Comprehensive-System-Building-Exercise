@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import gakusei.servlet.ValidationUtil;
 import kigyou.bean.CompanyBean;
 import kigyou.dao.CompanyDao;
 
@@ -37,10 +36,10 @@ public class CompanyListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String keyword = request.getParameter("keyword");
 		// アクション定義書「検索内容入力欄不正入力」: 全角以外が入力された場合はエラーメッセージ
-        if (keyword != null && !keyword.isEmpty() && !ValidationUtil.isZenkaku(keyword)) {
+        /*if (keyword != null && !keyword.isEmpty() && !ValidationUtil.isZenkaku(keyword)) {
             request.setAttribute("errorMessage", "検索内容は全角で入力してください。");
             keyword = null; // 不正入力時は検索条件なしの一覧を表示
-        }
+        }*/
         try {
             CompanyDao dao = new CompanyDao();
             List<CompanyBean> list = dao.findByName(keyword);

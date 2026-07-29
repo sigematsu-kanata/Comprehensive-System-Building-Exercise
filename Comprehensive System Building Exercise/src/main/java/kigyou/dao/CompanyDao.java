@@ -151,12 +151,12 @@ public class CompanyDao{
 	}
 	
 	//新規登録
-	public int insert(CompanyBean bean) {
+	public void insert(CompanyBean bean) throws SQLException {
 		//company_idはDB側で自動割り当て想定
-		String sql = "INSERT INTO company_table("
-				   + "company_name, alias_name, company_id, postal_code, company_address,"
-				   + "phone_number, mail_address, person_name, recruitment_record"
-				   + ") VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO company_table"
+				   + "(company_name, alias_name, postal_code, company_address, "
+				   + "phone_number, mail_address, person_name, recruitment_record) "
+				   + "VALUES(?,?,?,?,?,?,?)";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
@@ -170,20 +170,17 @@ public class CompanyDao{
 			ps.setString(7, bean.getPerson_name());
 			ps.setString(8, bean.getRecruitment_record());
 			
-			//追加件数（通常１）が返る
-			return ps.executeUpdate();
+			ps.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
-				
 	}
 	
 	//更新
-	public int updata(CompanyBean bean) {
+	public void updata(CompanyBean bean) throws SQLException{
 		String sql = "UPDATE company_table SET"
-				   + "company_name=?, alias_name=?, postal_code=?, company_address=?"
-				   + "phone_number=?, mail_address=?, person_name=?, recruitment_record=?"
+				   + "company_name=?, alias_name=?, postal_code=?, company_address=?, "
+				   + "phone_number=?, mail_address=?, person_name=?, recruitment_record=? "
 				   + "WHERE company_id=?";
 		
 		try(Connection con = getConnection();
@@ -198,26 +195,24 @@ public class CompanyDao{
 			ps.setString(8, bean.getRecruitment_record());
 			ps.setInt(9, bean.getCompany_id());
 			
-			return ps.executeUpdate();	
+			ps.executeUpdate();	
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
 	}
 	
 	//削除
-	public int delete(int id) {
+	public void delete(int id) throws SQLException{
 		String sql = "DELETE FROM company_table WHERE company_id=?";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
 			
 			ps.setInt(1, id);
-			return ps.executeUpdate();
+			ps.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
 	}
 	private Connection getConnection() {
 		// TODO 自動生成されたメソッド・スタブ

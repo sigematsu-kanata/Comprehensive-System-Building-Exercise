@@ -1,6 +1,7 @@
 package kigyou.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -41,9 +42,12 @@ public class CompanyDeleteExecuteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("companyId"));
 		
-		CompanyDao dao = new CompanyDao();
-		dao.delete(id);
-		
+		try {
+			CompanyDao dao = new CompanyDao();
+			dao.delete(id);
+	        } catch (SQLException e) {
+	            throw new ServletException("企業情報の登録に失敗しました。", e);
+	        }
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyDeleteComplete.jsp");
 		rd.forward(request, response);
 		

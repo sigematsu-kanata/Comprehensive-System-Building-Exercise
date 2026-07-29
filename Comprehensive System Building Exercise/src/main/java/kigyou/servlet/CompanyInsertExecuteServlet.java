@@ -1,6 +1,7 @@
 package kigyou.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import kigyou.bean.CompanyBean;
 import kigyou.dao.CompanyDao;
@@ -19,40 +21,33 @@ import kigyou.dao.CompanyDao;
 public class CompanyInsertExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CompanyInsertExecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		CompanyBean c = new CompanyBean();
-		c.setCompany_name(request.getParameter("company_name"));
-		c.setAlias_name(request.getParameter("alias_name"));
-		c.setPostal_code(request.getParameter("postal_code"));
-		c.setCompany_address(request.getParameter("company_address"));
-		c.setPhone_number(request.getParameter("phone_number"));
-		c.setMail_address(request.getParameter("mail_address"));
-		c.setPerson_name(request.getParameter("person_name"));
-		c.setRecruitment_record(request.getParameter("recruitmentrecord"));
-		
+		HttpSession session = request.getSession();
+		CompanyBean bean = (CompanyBean) session.getAttribute("bean");
+		bean.setCompany_name(request.getParameter("company_name"));
+		bean.setAlias_name(request.getParameter("alias_name"));
+		bean.setPostal_code(request.getParameter("postal_code"));
+		bean.setCompany_address(request.getParameter("company_address"));
+		bean.setPhone_number(request.getParameter("phone_number"));
+		bean.setMail_address(request.getParameter("mail_address"));
+		bean.setPerson_name(request.getParameter("person_name"));
+		bean.setRecruitment_record(request.getParameter("recruitment_record"));
+		try {
 		CompanyDao dao = new CompanyDao();
-		dao.insert(c);
-		
+		dao.insert(bean);
+        } catch (SQLException e) {
+            throw new ServletException("企業情報の登録に失敗しました。", e);
+        }
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/companyInsertComplete.jsp");
 		rd.forward(request, response);
 		

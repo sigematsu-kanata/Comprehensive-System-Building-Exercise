@@ -31,12 +31,12 @@
     </div>
     
 	<form class="search-box" action="CompanyListServlet" method="get">
-        検索（企業番号or企業名・全角）：
+        検索（企業番号or企業名<!-- ・全角 -->）：
         <input type="text" name="keyword" value="<%= request.getAttribute("keyword") == null ? "" : request.getAttribute("keyword") %>">
         <button type="submit" class="btn">検索</button>
     </form>
 	<table>
-        <tr>S
+        <tr>
             <th>企業番号</th>
         	<th>企業名</th>
         	<th>別名</th>
