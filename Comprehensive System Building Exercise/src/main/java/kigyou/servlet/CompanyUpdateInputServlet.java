@@ -30,11 +30,10 @@ public class CompanyUpdateInputServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		 // 確認画面から「戻る」で来た場合は、修正途中の内容を再表示する
-		CompanyBean bean = (CompanyBean) session.getAttribute("bean");
+		CompanyBean bean = (CompanyBean) session.getAttribute("updateBean");
 
         if (bean == null) {
             String companyId = request.getParameter("companyId");
-            System.out.println(companyId);
             try {
             	CompanyDao dao = new CompanyDao();
                 bean = dao.findById(Integer.parseInt(companyId));

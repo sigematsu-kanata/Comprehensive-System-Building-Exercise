@@ -34,7 +34,6 @@ public class GakuseiUpdateInputServlet extends HttpServlet {
 
         if (bean == null) {
             String studentId = request.getParameter("studentId");
-            System.out.println(studentId);
             try {
                 StudentDAO dao = new StudentDAO();
                 bean = dao.findById(studentId);

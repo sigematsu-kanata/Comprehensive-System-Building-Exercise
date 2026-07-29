@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kigyou.dao.DBManager;
 import kigyou.bean.CompanyBean;
 
 //DBのcompanyテーブルに対して
@@ -64,10 +63,6 @@ public class CompanyDao{
 		
         return bean;
     }
-
-
-
-
 
 
 	//全体収得（企業管理画面用）
@@ -156,7 +151,7 @@ public class CompanyDao{
 		String sql = "INSERT INTO company_table"
 				   + "(company_name, alias_name, postal_code, company_address, "
 				   + "phone_number, mail_address, person_name, recruitment_record) "
-				   + "VALUES(?,?,?,?,?,?,?)";
+				   + "VALUES(?,?,?,?,?,?,?,?)";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){

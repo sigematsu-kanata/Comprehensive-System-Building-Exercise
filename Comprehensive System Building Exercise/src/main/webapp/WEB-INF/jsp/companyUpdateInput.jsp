@@ -5,7 +5,7 @@
     if (bean == null) bean = new CompanyBean();
 	
     int Company_id = bean.getCompany_id();
-    String Company_name = bean.getPerson_name() == null ? "null" : bean.getPerson_name();
+    String Company_name = bean.getCompany_name() == null ? "null" : bean.getCompany_name();
     String Alias_name = bean.getAlias_name() == null ? "null" : bean.getAlias_name();
     String Postal_code = bean.getPostal_code() == null ? "null" : bean.getPostal_code();
     String Company_address = bean.getCompany_address() == null ? "null" : bean.getCompany_address();
