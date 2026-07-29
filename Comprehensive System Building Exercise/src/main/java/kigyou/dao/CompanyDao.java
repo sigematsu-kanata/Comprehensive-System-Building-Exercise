@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import gakusei.dao.DBManager;
 import kigyou.bean.CompanyBean;
 
 //DBのcompanyテーブルに対して
@@ -70,7 +71,7 @@ public class CompanyDao{
 		List<CompanyBean> list = new ArrayList<>();
 		String sql = "SELECT * FROM company ORDER BY company_id";
 		
-		try(Connection con = getConnection();
+		try(Connection con = DBManager.getConnection();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()){
 			
@@ -153,7 +154,7 @@ public class CompanyDao{
 				   + "phone_number, mail_address, person_name, recruitment_record) "
 				   + "VALUES(?,?,?,?,?,?,?,?)";
 		
-		try(Connection con = getConnection();
+		try(Connection con = DBManager.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
 			
 			ps.setString(1, bean.getCompany_name());
@@ -173,12 +174,12 @@ public class CompanyDao{
 	
 	//更新
 	public void updata(CompanyBean bean) throws SQLException{
-		String sql = "UPDATE company_table SET"
+		String sql = "UPDATE company_table SET "
 				   + "company_name=?, alias_name=?, postal_code=?, company_address=?, "
 				   + "phone_number=?, mail_address=?, person_name=?, recruitment_record=? "
 				   + "WHERE company_id=?";
 		
-		try(Connection con = getConnection();
+		try(Connection con = DBManager.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
 			ps.setString(1, bean.getCompany_name());
 			ps.setString(2, bean.getAlias_name());
@@ -200,7 +201,7 @@ public class CompanyDao{
 	public void delete(int id) throws SQLException{
 		String sql = "DELETE FROM company_table WHERE company_id=?";
 		
-		try(Connection con = getConnection();
+		try(Connection con = DBManager.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql)){
 			
 			ps.setInt(1, id);
@@ -209,8 +210,5 @@ public class CompanyDao{
 			e.printStackTrace();
 		}
 	}
-	private Connection getConnection() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+
 }
