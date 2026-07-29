@@ -34,7 +34,7 @@ public class CompanyDeleteConfirmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("companyid"));
+		int id = Integer.parseInt(request.getParameter("companyId"));
 		
 		CompanyDao dao = new CompanyDao();
 		CompanyBean bean =new CompanyBean();

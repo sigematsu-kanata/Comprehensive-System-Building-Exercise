@@ -39,7 +39,7 @@ public class CompanyDeleteExecuteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("companyid"));
+		int id = Integer.parseInt(request.getParameter("companyId"));
 		
 		CompanyDao dao = new CompanyDao();
 		dao.delete(id);

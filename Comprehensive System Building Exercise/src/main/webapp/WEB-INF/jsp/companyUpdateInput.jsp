@@ -3,7 +3,8 @@
 <%
     CompanyBean bean = (CompanyBean) request.getAttribute("bean");
     if (bean == null) bean = new CompanyBean();
-
+	
+    int Company_id = bean.getCompany_id();
     String Company_name = bean.getPerson_name() == null ? "null" : bean.getPerson_name();
     String Alias_name = bean.getAlias_name() == null ? "null" : bean.getAlias_name();
     String Postal_code = bean.getPostal_code() == null ? "null" : bean.getPostal_code();
@@ -35,14 +36,14 @@
 	    	<tr><th>企業番号</th> <td><input type="text" name="company_id" value="<%= Company_id %>" required></td></tr>
 	    	<tr><th>企業名</th> <td><input type="text" name="company_name"  value="<%= Company_name %>" required></td></tr>
 	        <tr><th>別名</th> <td><input type="text" id="aliasName" name="alias_name"  value="<%= Alias_name %>" required></td></tr>
-	        <tr><th>郵便番号</th> <td><input type="text" id="Postal_code" name="Postal_code" value="<%= Postal_code %>" required></td></tr>
+	        <tr><th>郵便番号</th> <td><input type="text" id="Postal_code" name="postal_code" value="<%= Postal_code %>" required></td></tr>
 	        <tr><th>住所</th> <td><input type="text" id="companyAddress" name="company_address" value="<%= Company_address %>" required></td></tr>
 	        <tr><th>TEL</th> <td><input type="text" id="phoneNumber" name="phone_number" value="<%= Phone_number %>" required></td></tr>
 	        <tr><th>メールアドレス</th> <td><input type="email" id="mailAddress" name="mail_address" value="<%= Mail_address %>" required></td></tr>
 	        <tr><th>担当者名</th> <td><input type="text" id="personName" name="person_name" value="<%= Person_name %>" required></td></tr>
 	        <tr><th>採用実績</th>
 	            <td>
-	                <select name="recruitmentrecord" required>
+	                <select name="recruitment_record" required>
 	                    <option value="〇" <%= "〇".equals(Recruitment_record) || Recruitment_record.isEmpty() ? "selected" : "" %>>〇</option>
 	                    <option value="×" <%= "×".equals(Recruitment_record) ? "selected" : "" %>>×</option>
 	                </select>

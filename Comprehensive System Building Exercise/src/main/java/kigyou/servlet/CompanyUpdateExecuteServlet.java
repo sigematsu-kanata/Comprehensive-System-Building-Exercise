@@ -38,7 +38,8 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
         String action = request.getParameter("action"); // "execute" or "back"
 
         if ("back".equals(action)) {
-            response.sendRedirect("GakuseiUpdateInput");
+        	session.setAttribute("bean", bean);   
+            response.sendRedirect("CompanyUpdateInputServlet");
             return;
         }
 
@@ -47,7 +48,7 @@ public class CompanyUpdateExecuteServlet extends HttpServlet {
         	CompanyBean original = dao.findById(bean.getCompany_id());
             if (original == null) {
                 request.setAttribute("errorMessage", "更新対象の企業情報が見つかりません。");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("GakuseiList");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("CompanyListServlet");
                 dispatcher.forward(request, response);
                 return;
             }

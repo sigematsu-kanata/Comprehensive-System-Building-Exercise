@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.Company" %>   
-<%@ page import="bean.CompanyBean" %>   
+<%@ page import="kigyou.bean.CompanyBean" %>   
 <%
     CompanyBean bean = (CompanyBean) request.getAttribute("bean");
     if (bean == null) bean = new CompanyBean();
-
+    int Company_id = bean.getCompany_id();
     String Company_name = bean.getPerson_name() == null ? "null" : bean.getPerson_name();
     String Alias_name = bean.getAlias_name() == null ? "null" : bean.getAlias_name();
     String Postal_code = bean.getPostal_code() == null ? "null" : bean.getPostal_code();
@@ -46,10 +45,10 @@
     </table>
 </div>
 
-<form action="GakuseiDeleteExecute" method="post">
-        <input type="hidden" name="companyid" value="<%= bean.getCompany_id() %>">
+<form action="CompanyDeleteExecuteServlet" method="post">
+        <input type="hidden" name="companyId" value="<%= bean.getCompany_id() %>">
         <button type="submit" name="action" value="execute" class="btn btn-danger">実行</button>
-        <button type="submit" name="action" value="back" class="btn btn-gray">戻る</button>
+        <a class="btn btn-gray" href="CompanyListServlet">戻る</a>
 </form>
 </body>
 </html>
