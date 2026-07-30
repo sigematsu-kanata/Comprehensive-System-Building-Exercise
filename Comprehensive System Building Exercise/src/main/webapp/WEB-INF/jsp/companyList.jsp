@@ -26,7 +26,7 @@
     <% } %>
     
     <div class="action-links">
-        <a class="btn btn-gray" href="<%= request.getContextPath() %>/index.jsp" title="このサブシステムの範囲外の画面です">作業選択</a>
+        <a class="btn btn-gray" href="index.jsp" >作業選択</a>
         <a class="btn" href="CompanyInsertInputServlet">新規登録</a>
     </div>
     
