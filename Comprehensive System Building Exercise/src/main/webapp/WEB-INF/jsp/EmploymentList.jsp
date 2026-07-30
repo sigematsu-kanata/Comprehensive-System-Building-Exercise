@@ -56,7 +56,7 @@
                     <th>1次試験</th>
                     <th>2次試験</th>
                     <th>最終選考</th>
-                    <th>結果判明日</th>
+                    <th>最終結果</th>
                     <th>備考</th>
                     <th class="sticky-right col-update">更新</th>
                     <th class="sticky-right col-delete">削除</th>
