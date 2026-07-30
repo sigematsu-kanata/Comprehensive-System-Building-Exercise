@@ -1,4 +1,4 @@
-package servlet;
+package syuusyoku.servlet;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import model.Employment;
-import model.EmploymentDropListLogic;
+import syuusyoku.model.Employment;
+import syuusyoku.model.EmploymentDropListLogic;
 
 /**
  * Servlet implementation class EmploymentDropServlet

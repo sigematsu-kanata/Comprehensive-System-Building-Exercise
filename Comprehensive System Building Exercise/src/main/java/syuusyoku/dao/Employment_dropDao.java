@@ -1,4 +1,4 @@
-package dao;
+package syuusyoku.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Employment;
+import syuusyoku.model.Employment;
 
 public class Employment_dropDao {
 	public int dropList(Employment EmploymentList){

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="model.Employment" %>
+<%@ page import="syuusyoku.model.Employment" %>
 <%
 //リクエストスコープから取得を試みる
 Employment bean = (Employment) request.getAttribute("Edata");

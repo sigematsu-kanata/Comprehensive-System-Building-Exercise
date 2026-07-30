@@ -1,4 +1,4 @@
-package model;
+package syuusyoku.model;
 
 public class Employment {
 	private int student_id; //学籍番号

@@ -1,4 +1,4 @@
-package dao;
+package syuusyoku.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Employment;
+import syuusyoku.model.Employment;
 
 public class Employment_newDao {
 	public int setList(Employment EmploymentList){
@@ -23,7 +23,6 @@ public class Employment_newDao {
             try (Connection conn = ds.getConnection();
                  PreparedStatement pStmt = conn.prepareStatement(sql)) {
 
-                // 空文字（""）を null に変換するヘルパー処理（日付エラー対策）
                 pStmt.setInt(1, EmploymentList.getStudentId());
                 pStmt.setInt(2, EmploymentList.getCompanyId());
                 pStmt.setString(3, nullIfEmpty(EmploymentList.getActivitySituation()));

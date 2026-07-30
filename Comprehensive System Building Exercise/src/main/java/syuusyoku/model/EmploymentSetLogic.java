@@ -1,6 +1,6 @@
-package model;
+package syuusyoku.model;
 
-import dao.Employment_newDao;
+import syuusyoku.dao.Employment_newDao;
 
 public class EmploymentSetLogic {
 	public void execute(Employment emp) {

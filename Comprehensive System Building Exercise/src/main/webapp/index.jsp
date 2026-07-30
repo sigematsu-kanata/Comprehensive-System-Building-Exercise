@@ -10,5 +10,6 @@
 <a href="GakuseiList">学生</a>
 <a href="CompanyListServlet">企業</a>
 <a href="EmploymentListServlet">就職</a>
+<a href="ReportServlet">活動報告書</a>
 </body>
 </html>
