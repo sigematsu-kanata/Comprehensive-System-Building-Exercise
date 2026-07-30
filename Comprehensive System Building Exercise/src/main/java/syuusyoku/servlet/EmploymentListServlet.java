@@ -13,9 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import syuusyoku.classpackage.Option;
 import syuusyoku.dao.EmploymentDao;
 import syuusyoku.dao.Employment_searchdao;
+import syuusyoku.model.CSClass;
 import syuusyoku.model.Employment;
-import syuusyokuhyou.model.CSClass;
-import syuusyokuhyou.model.GetCSClassLogic;
+import syuusyoku.model.GetCSClassLogic;
 
 /**
  * Servlet implementation class EmploymentListServlet
