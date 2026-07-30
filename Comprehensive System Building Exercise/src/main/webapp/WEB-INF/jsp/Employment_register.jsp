@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="model.Employment" %>
+<%@ page import="syuusyoku.model.Employment" %>
 <%
     Employment bean = (Employment) request.getAttribute("Edata");
+
     if (bean == null) bean = new Employment();
     
     String a = bean.getStudentId() == 0 ? "" : String.valueOf(bean.getStudentId());
@@ -38,10 +39,10 @@
     <h2>就職管理新規登録</h2>
 
     <%
-        String errorMessage = (String) request.getAttribute("errorMessage");
-        if (errorMessage != null) {
+		String emg = (String) request.getAttribute("emg");
+        if (emg != null) {
     %>
-    <div class="error"><%= errorMessage %></div>
+    <div class="error"><%= emg %></div>
     <% } %>
 
     <form action="<%= request.getContextPath() %>/EmploymentInsertServlet" method="post">

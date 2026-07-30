@@ -1,6 +1,6 @@
-package model;
+package syuusyoku.model;
 
-import dao.Employment_dropDao;
+import syuusyoku.dao.Employment_dropDao;
 
 public class EmploymentDropListLogic {
 	public void execute(Employment emp) {

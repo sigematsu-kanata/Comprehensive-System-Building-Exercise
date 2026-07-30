@@ -1,4 +1,4 @@
-package servlet;
+package syuusyoku.servlet;
 
 import java.io.IOException;
 
@@ -10,9 +10,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import classpackage.Option;
-import model.Employment;
-import model.EmploymentSetLogic;
+import syuusyoku.classpackage.Option;
+import syuusyoku.model.Employment;
+import syuusyoku.model.EmploymentCheckLogic;
+import syuusyoku.model.EmploymentSetLogic;
 
 /**
  * Servlet implementation class EmploymentInsertServlet
@@ -29,34 +30,50 @@ public class EmploymentInsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
+        String emg = "";
+        int emgcheck = -1;
         HttpSession session = request.getSession();
-
         // 1. 入力画面から「確認画面へ進む」とき
         if ("insert".equals(action)) {
+        	String forward = "";
             Employment formData = new Employment();
             String a = Option.zenkakuToHankakuNum(request.getParameter("a"));
             String b = Option.zenkakuToHankakuNum(request.getParameter("b"));
-			/*if(a.equals("数字以外が入力されています")||b.equals("数字以外が入力されています")){
-				formData.setActivitySituation(request.getParameter("c"));
-			    formData.setIntroduction(request.getParameter("d"));
-			    formData.setPrefecture(request.getParameter("e"));
-			    formData.setRegion(request.getParameter("f"));
-			    formData.setInformation_date(request.getParameter("g"));
-			    formData.setExam_date1(request.getParameter("h"));
-			    formData.setExam_date2(request.getParameter("i"));
-			    formData.setExam_date3(request.getParameter("j"));
-			    formData.setfinel(request.getParameter("k"));
-			    formData.setmemo(request.getParameter("n"));
-			    String emg = "学籍番号または数字以外が入力されています";
-			}*/
-            // 数値変換の安全対策
-            try {
-                formData.setStudentId(Integer.parseInt(request.getParameter("a")));
-                formData.setCompanyId(Integer.parseInt(request.getParameter("b")));
-            } catch (NumberFormatException e) {
-                // 数値変換失敗時の例外処理（必要に応じてエラーメッセージを設定）
+            
+            
+            
+            if(a.equals("error")&&b.equals("error")) {
+            	emg = "学籍番号、企業番号共に数字以外が入力されました";
+            	emgcheck = 0;
+            }else if(a.equals("error")) {
+            	emg = "学籍番号に数字以外が入力されました";
+            	formData.setCompanyId(Integer.parseInt(b));
+            	emgcheck = 0;
+            }else if(b.equals("error")) {
+            	emg = "企業番号に数字以外が入力されました";
+            	formData.setStudentId(Integer.parseInt(a));
+            	emgcheck = 0;
+            }else {
+            	Employment testdata = new Employment();
+            	testdata.setStudentId(Integer.parseInt(a));
+            	testdata.setCompanyId(Integer.parseInt(b));
+            	EmploymentCheckLogic cdao = new EmploymentCheckLogic();
+                boolean check = cdao.execute(testdata);
+                if(check == true) {
+                	emg = "学籍番号、企業番号共に重複しているデータがあります";
+                	emgcheck = 0;
+                }
             }
-
+            
+            
+            if(emgcheck == 0) {//エラー
+            	forward = "/WEB-INF/jsp/Employment_register.jsp";
+            }else {
+            	// 数値変換の安全対策
+            	formData.setStudentId(Integer.parseInt(a));
+            	formData.setCompanyId(Integer.parseInt(b));
+            	forward = "/WEB-INF/jsp/Employment_register_confirm.jsp";
+            }
             formData.setActivitySituation(request.getParameter("c"));
             formData.setIntroduction(request.getParameter("d"));
             formData.setPrefecture(request.getParameter("e"));
@@ -67,11 +84,10 @@ public class EmploymentInsertServlet extends HttpServlet {
             formData.setExam_date3(request.getParameter("j"));
             formData.setfinel(request.getParameter("k"));
             formData.setmemo(request.getParameter("n"));
-
             // セッションスコープに保存（画面を跨いでも保持される）
             session.setAttribute("Edata", formData);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Employment_register_confirm.jsp");
+            request.setAttribute("emg", emg);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
             dispatcher.forward(request, response);
 
         // 2. 確認画面から「入力画面へ戻る」とき

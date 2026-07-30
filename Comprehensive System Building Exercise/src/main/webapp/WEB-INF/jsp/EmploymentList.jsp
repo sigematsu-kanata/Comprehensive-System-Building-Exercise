@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Employment" %>
+<%@ page import="syuusyoku.model.Employment" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,8 +31,16 @@
     </div>
 
 	<form class="search-box" action="EmploymentListServlet" method="get">
-        検索（氏名・全角）：
+		<input type="hidden" name="search" value="name">
+        検索（氏名・クラス・学籍番号）：
         <input type="text" name="keyword" value="<%= request.getAttribute("keyword") == null ? "" : request.getAttribute("keyword") %>">
+        <button type="submit" class="btn">検索</button>
+    </form>
+    
+    <form class="search-box" action="EmploymentListServlet" method="get">
+    	<input type="hidden" name="search" value="date">
+        検索（日付）：
+        <input type="date" name="keyword" value="<%= request.getAttribute("keyword") == null ? "" : request.getAttribute("keyword") %>">
         <button type="submit" class="btn">検索</button>
     </form>
     

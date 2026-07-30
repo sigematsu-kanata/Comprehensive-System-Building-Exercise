@@ -1,8 +1,8 @@
-package model;
+package syuusyoku.model;
 
 import java.util.List;
 
-import dao.EmploymentDao;
+import syuusyoku.dao.EmploymentDao;
 
 public class EmploymentGetListLogic {
 	public List<Employment> execute() {

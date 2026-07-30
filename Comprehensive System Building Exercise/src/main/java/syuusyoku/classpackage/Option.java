@@ -1,4 +1,4 @@
-package classpackage;
+package syuusyoku.classpackage;
 
 public class Option {
 	/**
@@ -9,7 +9,7 @@ public class Option {
      */
     public static String zenkakuToHankakuNum(String input) {
         if (input == null || input.isEmpty()) {
-            return input;
+            return "0";
         }
         String emg = "";
         char[] chars = input.toCharArray();
@@ -24,7 +24,7 @@ public class Option {
                 continue;
             } else {
                 // 数字（全角・半角）以外の文字が含まれていたらエラーを投げる
-                emg = "数字以外が入力されています";
+                emg = "error";
                 break;
             }
         }
