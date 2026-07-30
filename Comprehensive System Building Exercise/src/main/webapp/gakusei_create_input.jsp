@@ -64,10 +64,12 @@
             <tr><th>県内外志望</th>
             	<td>
                     <select name="prefHope" required>
+                    	<option value="どちらでも" <%= "どちらでも".equals(v_prefHope) ? "selected" : "" %>>どちらでも</option>
                         <option value="県内" <%= "県内".equals(v_prefHope) ? "selected" : "" %>>県内</option>
                         <option value="県外" <%= "県外".equals(v_prefHope) ? "selected" : "" %>>県外</option>
                     </select>
                 </td>
+            </tr>
             <tr><th>希望職種１</th><td><input type="text" name="job1" maxlength="10" value="<%= v_job1 %>" required></td></tr>
             <tr><th>希望職種２</th><td><input type="text" name="job2" maxlength="10" value="<%= v_job2 %>" required></td></tr>
             <tr><th>希望職種３</th><td><input type="text" name="job3" maxlength="10" value="<%= v_job3 %>" required></td></tr>
