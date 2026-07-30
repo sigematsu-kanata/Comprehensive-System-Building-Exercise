@@ -40,32 +40,6 @@
         <a class="btn btn-gray" href="CompanyListServlet">戻る</a>
     </form>
     
-
-	<!--<form action="<%= request.getContextPath() %>/CompanyInsertConfirmServlet" method="post">
-	    <label for="companyName">企業名:</label>
-	    <input type="text" id="companyName" name="company_name" required><br><br>
-	
-	    <label for="aliasName">別名:</label>
-	    <input type="text" id="aliasName" name="alias_name"><br><br>
-	
-	    <label for="postalCode">郵便番号:</label>
-	    <input type="text" id="postalCode" name="postal_code" required><br><br>
-	
-	    <label for="companyAddress">住所:</label>
-	    <input type="text" id="companyAddress" name="company_address" required><br><br>
-	
-	    <label for="phoneNumber">TEL:</label>
-	    <input type="text" id="phoneNumber" name="phone_number"><br><br>
-	
-	    <label for="mailAddress">メールアドレス:</label>
-	    <input type="email" id="mailAddress" name="mail_address"><br><br>
-	
-	    <label for="personName">担当者名:</label>
-	    <input type="text" id="personName" name="person_name"><br><br>
-	
-	    <label for="recruitmentRecord">採用実績:</label>
-	    <input type="text" id="recruitmentRecord" name="recruitment_record"><br><br>  -->
-	    
 	</form>
 </div>
 </body>
