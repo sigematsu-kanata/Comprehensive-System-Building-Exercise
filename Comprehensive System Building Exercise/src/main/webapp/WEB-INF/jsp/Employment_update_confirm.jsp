@@ -35,6 +35,7 @@ if (bean == null) {
 
     <table class="form-table">
         <tr><th>学籍番号</th><td><%= bean.getStudentId() %></td></tr>
+        <tr><th>名前</th><td><%= bean.getName() %></td></tr>
         <tr><th>企業番号</th><td><%= bean.getCompanyId() %></td></tr>
         <tr><th>就職状況</th><td><%= bean.getActivitySituation() %></td></tr>
         <tr><th>紹介区分</th><td><%= bean.getIntroduction() %></td></tr>

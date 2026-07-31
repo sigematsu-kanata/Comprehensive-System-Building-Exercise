@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import syuusyoku.classpackage.Option;
 import syuusyoku.model.Employment;
 import syuusyoku.model.EmploymentCheckLogic;
+import syuusyoku.model.EmploymentGetOneNameLogic;
 import syuusyoku.model.EmploymentUpdateLogic;
 
 /**
@@ -92,6 +93,11 @@ public class EmploymentUpdataServlet extends HttpServlet {
             	
             	forward = "/WEB-INF/jsp/Employment_update_confirm.jsp";
             }
+            
+            EmploymentGetOneNameLogic Ndao = new EmploymentGetOneNameLogic();
+            String Name = Ndao.execute(a);
+            formData.setName(Name);
+            
             formData.setActivitySituation(request.getParameter("c"));
             formData.setIntroduction(request.getParameter("d"));
             formData.setPrefecture(request.getParameter("e"));

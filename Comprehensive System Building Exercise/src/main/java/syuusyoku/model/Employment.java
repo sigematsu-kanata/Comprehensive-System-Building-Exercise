@@ -14,6 +14,8 @@ public class Employment {
 	private String finel;//最終結果
 	private String memo;//
 	
+	private String name;
+	
 	public Employment(int student_id, int company_id, String activity_situation, String introduction, String prefecture, String region, String information_date, String exam_date1, String exam_date2, String exam_date3, String finel, String memo) {
 		this.student_id = student_id;
 		this.company_id = company_id;
@@ -66,6 +68,14 @@ public class Employment {
     
     public String getmemo() { return memo; }
     public void setmemo(String memo) { this.memo = memo; }
+    
+    
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
     
 	
 	

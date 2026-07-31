@@ -87,12 +87,6 @@ if (bean == null) {
             <tr><th>二次試験</th><td><input type="date" name="i" maxlength="10" value="<%= i %>" ></td></tr>
             <tr><th>三次試験</th><td><input type="date" name="j" maxlength="10" value="<%= j %>" ></td></tr>
             <tr><th>最終結果</th><td><input type="date" name="k" maxlength="10" value="<%= k %>" ></td></tr>
-             <tr><th>最終結果</th><td>
-                    <select name="k" required>
-                        <option value="---" <%= "---".equals(c) || c.isEmpty() ? "selected" : "" %>>ー</option>
-                        <option value="○" <%= "○".equals(k) ? "selected" : "" %>>○</option>
-                        <option value="×" <%= "×".equals(k) ? "selected" : "" %>>×</option>
-                    </select> </td></tr>
             <tr><th>備考欄</th><td><input type="text" name="n" maxlength="100" value="<%= n %>" ></td></tr>
         </table>
         <button type="submit" class="btn">登録</button>

@@ -48,6 +48,7 @@
         <tr>
                     <th class="sticky-left col-class">学籍番号</th>
                     <th>企業番号</th>
+                    <th>名前</th>
                     <th>就職状況</th>
                     <th>紹介区分</th>
                     <th>地域</th>
@@ -56,7 +57,7 @@
                     <th>1次試験</th>
                     <th>2次試験</th>
                     <th>最終選考</th>
-                    <th>最終結果</th>
+                    <th>結果判明日</th>
                     <th>備考</th>
                     <th class="sticky-right col-update">更新</th>
                     <th class="sticky-right col-delete">削除</th>
@@ -72,6 +73,7 @@
             	<tr>
                     <td><%= e.getStudentId() %></td>
                     <td><%= e.getCompanyId() %></td>
+                    <td><%= e.getName() %>
                     <td><%= e.getActivitySituation() %></td>
                     <td><%= e.getIntroduction() %></td>
                     <td><%= e.getPrefecture() %></td>
